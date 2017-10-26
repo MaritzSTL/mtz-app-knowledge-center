@@ -30,18 +30,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-color: #05357a;
+        --app-secondary-color: #FFF;
 
         display: block;
-      }
-
-      app-drawer-layout:not([narrow]) [drawer-toggle] {
-        display: none;
-      }
-
-      #toggle:not([narrow]) [drawer-toggle] {
-        display: none;
       }
 
       app-header {
@@ -51,6 +43,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
+      }
+
+      app-drawer {
+        --app-drawer-content-container: {
+          background-color: var(--app-primary-color);
+        };
+      }
+
+      a {
+        color: #FFF;
+        text-decoration: none;
       }
 
       .drawer-list {
@@ -66,8 +69,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: #999;
         font-weight: bold;
+      }
+
+      .header-tabs {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+      .header-tabs a {
+        padding: 7px;
+        margin: 7px;
+      }
+
+      .header-tabs a.iron-selected {
+        box-shadow: inset 0 -6px 0px -4px #FFF;
+        transition: all .3s ease;
+
+      }
+
+      .header-tabs a.iron-selected:hover {
+        box-shadow: inset 0 -6px 0px -2px #FFF;
       }
     </style>
 
@@ -90,10 +114,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-header slot="header" condenses reveals effects="waterfall">
       <app-toolbar>
         <paper-icon-button id="toggle" icon="my-icons:menu" on-click="_toggleDrawer" hidden$="[[!narrow]]"></paper-icon-button>
-        <iron-selector selected="[[page]]" attr-for-selected="name" role="navigation" hidden$="[[narrow]]">
-          <a name="view1" href="[[rootPath]]view1">View One</a>
-          <a name="view2" href="[[rootPath]]view2">View Two</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="header-tabs" role="navigation">
+          <dom-if if="[[!narrow]]">
+            <template>
+              <a name="view1" href="[[rootPath]]view1">Guides</a>
+              <a name="view2" href="[[rootPath]]view2">Log In</a>
+              <a name="view3" href="[[rootPath]]view3">About</a>
+            </template>
+          </dom-if>
         </iron-selector>
       </app-toolbar>
     </app-header>
@@ -110,12 +138,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </iron-pages>
 
     <!-- Drawer content -->
-    <app-drawer id="drawer" slot="drawer" swipe-open>
-      <app-toolbar>Menu</app-toolbar>
+    <app-drawer id="drawer" class="app-drawer" slot="drawer" swipe-open>
+      <app-toolbar></app-toolbar>
       <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        <a name="view1" href="[[rootPath]]view1">View One</a>
-        <a name="view2" href="[[rootPath]]view2">View Two</a>
-        <a name="view3" href="[[rootPath]]view3">View Three</a>
+        <a name="view1" href="[[rootPath]]view1">Guides</a>
+        <a name="view2" href="[[rootPath]]view2">Log In</a>
+        <a name="view3" href="[[rootPath]]view3">About</a>
       </iron-selector>
     </app-drawer>
   </template>
