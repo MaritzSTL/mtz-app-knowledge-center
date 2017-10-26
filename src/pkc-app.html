@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="my-view3.html">
 <link rel="lazy-import" href="my-view404.html">
 
-<dom-module id="my-app">
+<dom-module id="pkc-app">
   <template>
     <style>
       :host {
@@ -149,8 +149,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class MyApp extends Polymer.Element {
-      static get is() { return 'my-app'; }
+    class PkcApp extends Polymer.Element {
+      static get is() { return 'pkc-app'; }
 
       static get properties() {
         return {
@@ -212,6 +212,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-    window.customElements.define(MyApp.is, MyApp);
+    window.customElements.define(PkcApp.is, PkcApp);
   </script>
 </dom-module>
