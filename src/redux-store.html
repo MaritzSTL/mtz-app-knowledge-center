@@ -1,0 +1,89 @@
+<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+<script src="../../node_modules/redux/dist/redux.js"></script>
+
+<script>
+  const initialState = {
+    guides: [
+      {
+        "id": 0,
+        "slug": "onboarding",
+        "name": "Onboarding Polymer",
+        "description": "A streamlined onboarding path.",
+        "type": "guide",
+        "audience_ids": [0]
+      },
+      {
+        "id": 1,
+        "slug": "test",
+        "description": "Whowghpoasghpsahgopasdhgpsdagh",
+        "name": "Temporary Test Guide",
+        "type": "guide",
+        "audience_ids": [1]
+      }
+    ],
+
+    chapters: [
+      {
+        "id": 0,
+        "guide_id": 0,
+        "position": 1,
+        "name": "Web Components",
+        "type": "chapter",
+        "description": "The best way to start understanding Polymer isn't starting with it. What's really going on here is a deeper shift in the internet.",
+        "content": "ladsglkadsjgalkdsjglasdjkgsa"
+      },
+      {
+        "id": 1,
+        "guide_id": 0,
+        "position": 1,
+        "name": "A New Kind of <div>",
+        "description": "What's going on here under the hood is surprisingly simple.",
+        "type": "chapter",
+        "content": "laksdglkasjglksadjglaskjglkasdjglkasjgadslkjgasdlgjlakdsjgl"
+      }
+    ],
+
+    audiences: [
+      {
+        "id": 0,
+        "name": "Public Polymer",
+        "type": "audience",
+        "visibility": "public"
+      },
+      {
+        "id": 1,
+        "name": "Maritz Polymer",
+        "type": "audience",
+        "visibility": "private"
+      },
+      {
+        "id": 2,
+        "name": "Client Teams",
+        "type": "audience",
+        "visibility": "private"
+      },
+      {
+        "id": 3,
+        "name": "Non-Technical",
+        "type": "audience",
+        "visibility": "private"
+      },
+      {
+        "id": 4,
+        "name": "SalesNEXT",
+        "type": "audience",
+        "visibility": "private"
+      }
+    ]
+  }
+
+  const reducer = (state, action) => {
+    if (!state) return initialState;
+    // switch (action.type) {
+    //   case ''
+    // }
+  };
+
+  const store = Redux.createStore(reducer);
+  const ReduxBehavior = PolymerRedux(store);
+</script>

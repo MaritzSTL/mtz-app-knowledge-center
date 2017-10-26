@@ -7,7 +7,7 @@
   },
   1: {
     "id": 1,
-    name: "Temporary Test Guide",
+    "name": "Temporary Test Guide",
     "type": "guide",
     "audience_ids": [1]
   }

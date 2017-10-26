@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="redux-store.html">
 
 <dom-module id="pkc-browse">
   <template>
@@ -9,19 +10,42 @@
 
         padding: 10px;
       }
+
+      .shelf {
+        height: 200px;
+        width: 95%;
+        background-color: #FFF;
+        outline: 1px solid black;
+        padding: 20px;
+      }
     </style>
 
-    <h1>Browse Component</h1>
-    <div class="card">
-      <div class="circle">1</div>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    <div class="browse">
+      <h1>This is, in fact, rendering.</h1>
+      <dom-repeat items="[[guides]]">
+        <template>
+          <div class="shelf" id="[[item.slug]]">Name: [[item.name]]</div>
+        </template>
+      </dom-repeat>
     </div>
   </template>
 
   <script>
-    class PkcBrowse extends Polymer.Element {
+    class PkcBrowse extends ReduxBehavior(Polymer.Element){
       static get is() { return 'pkc-browse'; }
+
+      static get properties() {
+        return {
+          guides: {
+            type: Array,
+            statePath: 'guides'
+          },
+          chapters: {
+            type: Array,
+            statePath: 'chapters'
+          }
+        };
+      }
     }
 
     window.customElements.define(PkcBrowse.is, PkcBrowse);
