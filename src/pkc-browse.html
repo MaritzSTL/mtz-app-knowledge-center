@@ -1,0 +1,29 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="pkc-browse">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <h1>Browse Component</h1>
+    <div class="card">
+      <div class="circle">1</div>
+      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    </div>
+  </template>
+
+  <script>
+    class PkcBrowse extends Polymer.Element {
+      static get is() { return 'pkc-browse'; }
+    }
+
+    window.customElements.define(PkcBrowse.is, PkcBrowse);
+  </script>
+</dom-module>
