@@ -1,0 +1,20 @@
+{
+  0: {
+    "id": 0,
+    "guide_id": 0,
+    "position": 1,
+    "name": "Web Components",
+    "type": "chapter",
+    "description": "The best way to start understanding Polymer isn't starting with it. What's really going on here is a deeper shift in the internet.",
+    "content": "ladsglkadsjgalkdsjglasdjkgsa"
+  },
+  1: {
+    "id": 1,
+    "guide_id": 0,
+    "position": 1,
+    "name": "A New Kind of <div>",
+    "description": "What's going on here under the hood is surprisingly simple.",
+    "type": "chapter",
+    content: "laksdglkasjglksadjglaskjglkasdjglkasjgadslkjgasdlgjlakdsjgl"
+  }
+}
