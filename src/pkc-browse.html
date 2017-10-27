@@ -3,51 +3,50 @@
 <link rel="import" href="redux-store.html">
 <link rel="import" href="pkc-chapter-preview.html">
 
-
 <dom-module id="pkc-browse">
   <template>
     <style include="shared-styles">
       :host {
-        display: block;
         padding: 10px;
+        display: inline-block;
+        position: relative;
       }
 
       .shelf {
-        width: 95%;
-        padding: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
         flex: true;
       }
 
       .section-title {
         color: rgba(54,49,43,0.3);
-        border-bottom: 2px solid rgba(205,183,155,0.2)
+        border-bottom: 2px solid rgba(205,183,155,0.2);
+        margin: 10px 10px 0px 10px;
       }
 
-      .guide-chapter-number {
-
+      .chapter-container {
+        display: flex;
+        flex-wrap: wrap;
       }
-
     </style>
 
     <div class="browse">
       <h3 class="section-title">Guides</h3>
-      <dom-repeat items="[[guides]]">
-        <template>
-          <div class="shelf" id="[[item.slug]]">
-            <h1>[[item.name]]</h1>
-            <p>[[item.description]]</p>
-            <ul>
-              <template is="dom-repeat" items="{{__selectChapters(item.id)}}">
+        <template is="dom-repeat" items="[[guides]]" as="guide">
+          <div class="shelf" id="[[guide.slug]]">
+            <h1>[[guide.name]]</h1>
+            <p>[[guide.description]]</p>
+            <div class="chapter-container">
+              <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
                 <pkc-chapter-preview
-                  chapter="[[item.position + 1]]"
-                  name="[[item.name]]"
-                  description="[[item.description]]">
-                </pkc-chapter-preview>
-              </template>
-            </ul>
+                  chapter="[[index]]"
+                  name="[[chapter.name]]"
+                  description="[[chapter.description]]">
+              </pkc-chapter-preview>
+            </template>
           </div>
-        </template>
-      </dom-repeat>
+        </div>
+      </template>
     </div>
   </template>
 

@@ -1,22 +1,46 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<script src="../node_modules/@polymer/paper-card/paper-card.html"></script>
 
 <dom-module id="pkc-chapter-preview">
   <template>
-    <style include="shared-styles">
+    <style>
       :host {
-        display: block;
+        display: inline-block;
+        margin: 5px;
+      }
 
-        padding: 10px;
+      .card {
+        background-color: #FFF;
+        border-radius: 0.7rem;
+        box-shadow: 0 1px 5px rgba(205,183,155,0.5);
+        padding: 2rem;
+        transition: all 0.2s ease;
+        height: 150px;
+        width: 300px;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 100px rgba(194, 205, 223, 0.5);
+      }
+
+      .chapter-number {
+        padding: 0px;
+      }
+
+      .chapter-name {
+        line-height: 0.5;
+      }
+
+      .chapter-description {
+        font-size: 14px;
       }
     </style>
 
-    <paper-card>
-      <p>Chapter [[chapter]]</p>
-      <h2>[[name]]</h2>
-      <p>[[description]]</p>
-    </paper-card>
+    <div class="card">
+      <span class="chapter-number">Chapter [[chapter]]</span>
+      <h2 class="chapter-name">[[name]]</h2>
+      <p class="chapter-description">[[description]]</p>
+    </div>
   </template>
 
   <script>
@@ -26,16 +50,13 @@
       static get properties() {
         return {
           chapter: {
-            type: String,
-            readOnly: true
+            type: Number,
           },
           name: {
             type: String,
-            readOnly: true
           },
           description: {
             type: String,
-            readOnly: true
           }
         }
       }
