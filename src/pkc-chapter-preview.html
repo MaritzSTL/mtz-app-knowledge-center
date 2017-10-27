@@ -34,13 +34,20 @@
       .chapter-description {
         font-size: 14px;
       }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     </style>
 
-    <div class="card">
-      <span class="chapter-number">Chapter [[chapter]]</span>
-      <h2 class="chapter-name">[[name]]</h2>
-      <p class="chapter-description">[[description]]</p>
-    </div>
+    <a href="/chapter/[[id]]">
+      <div class="card">
+        <span class="chapter-number">Chapter [[chapter]]</span>
+        <h2 class="chapter-name">[[name]]</h2>
+        <p class="chapter-description">[[description]]</p>
+      </div>
+    </a>
   </template>
 
   <script>
@@ -57,6 +64,9 @@
           },
           description: {
             type: String,
+          },
+          id: {
+            type: String
           }
         }
       }

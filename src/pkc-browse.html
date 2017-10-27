@@ -39,6 +39,7 @@
             <div class="chapter-container">
               <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
                 <pkc-chapter-preview
+                  id="[[chapter.id]]"
                   chapter="[[index]]"
                   name="[[chapter.name]]"
                   description="[[chapter.description]]">
@@ -47,6 +48,10 @@
           </div>
         </div>
       </template>
+    </div>
+
+    <div>
+      <p>Yes, chapters start at 0. We're not <i>barbarians</i>, here.</p>
     </div>
   </template>
 
