@@ -8,7 +8,7 @@
         "id": 0,
         "slug": "onboarding",
         "name": "Onboarding Polymer",
-        "description": "A streamlined onboarding path.",
+        "description": "Get up and running in Polymer as quickly as possible.",
         "type": "guide",
         "audience_ids": [0]
       },
@@ -17,6 +17,14 @@
         "slug": "test",
         "description": "Whowghpoasghpsahgopasdhgpsdagh",
         "name": "Temporary Test Guide",
+        "type": "guide",
+        "audience_ids": [1]
+      },
+      {
+        "id": 1,
+        "slug": "wigowweh",
+        "description": "Whowghpoasghpsahgopasdhgpsdagh",
+        "name": "Natalie's State Guide",
         "type": "guide",
         "audience_ids": [1]
       }
@@ -84,6 +92,7 @@
     // }
   };
 
-  const store = Redux.createStore(reducer);
+  const store = Redux.createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   const ReduxBehavior = PolymerRedux(store);
+
 </script>

@@ -1,0 +1,45 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<script src="../node_modules/@polymer/paper-card/paper-card.html"></script>
+
+<dom-module id="pkc-chapter-preview">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <paper-card>
+      <p>Chapter [[chapter]]</p>
+      <h2>[[name]]</h2>
+      <p>[[description]]</p>
+    </paper-card>
+  </template>
+
+  <script>
+    class PkcChapterPreview extends Polymer.Element {
+      static get is() { return 'pkc-chapter-preview'; }
+
+      static get properties() {
+        return {
+          chapter: {
+            type: String,
+            readOnly: true
+          },
+          name: {
+            type: String,
+            readOnly: true
+          },
+          description: {
+            type: String,
+            readOnly: true
+          }
+        }
+      }
+    }
+    window.customElements.define(PkcChapterPreview.is, PkcChapterPreview);
+  </script>
+</dom-module>

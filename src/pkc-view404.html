@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
-<dom-module id="pkc-404">
+<dom-module id="pkc-view404">
   <template>
     <style>
       :host {
@@ -20,12 +20,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+    Oops you hit a d404. <a href="[[rootPath]]">Head back to home.</a>
   </template>
 
   <script>
-    class Pkc404 extends Polymer.Element {
-      static get is() { return 'pkc-404'; }
+    class PkcView404 extends Polymer.Element {
+      static get is() { return 'pkc-view404'; }
       static get properties() {
         return {
           // This shouldn't be neccessary, but the Analyzer isn't picking up
@@ -35,6 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-    window.customElements.define(Pkc404.is, Pkc404);
+    window.customElements.define(PkcView404.is, PkcView404);
   </script>
 </dom-module>

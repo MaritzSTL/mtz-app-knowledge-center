@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="pkc-browse.html">
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="pkc-404.html">
+<link rel="lazy-import" href="pkc-view404.html">
 
 <dom-module id="pkc-app">
   <template>
@@ -129,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <pkc-browse name="browse"></pkc-browse>
     <my-view2 name="view2"></my-view2>
     <my-view3 name="view3"></my-view3>
-    <my-view404 name="view404"></my-view404>
+    <pkc-view404 name="view404"></pkc-view404>
   </iron-pages>
 
   <!-- Drawer content -->
@@ -197,7 +197,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _showPage404() {
-        this.page = '';
+        this.page = 'view404';
       }
 
       _displaySizeChanged(event) {

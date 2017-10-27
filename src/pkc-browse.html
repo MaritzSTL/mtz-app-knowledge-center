@@ -1,30 +1,51 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="redux-store.html">
+<link rel="import" href="pkc-chapter-preview.html">
+
 
 <dom-module id="pkc-browse">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
 
       .shelf {
-        height: 200px;
         width: 95%;
-        background-color: #FFF;
-        outline: 1px solid black;
         padding: 20px;
+        flex: true;
       }
+
+      .section-title {
+        color: rgba(54,49,43,0.3);
+        border-bottom: 2px solid rgba(205,183,155,0.2)
+      }
+
+      .guide-chapter-number {
+
+      }
+
     </style>
 
     <div class="browse">
-      <h1>This is, in fact, rendering.</h1>
+      <h3 class="section-title">Guides</h3>
       <dom-repeat items="[[guides]]">
         <template>
-          <div class="shelf" id="[[item.slug]]">Name: [[item.name]]</div>
+          <div class="shelf" id="[[item.slug]]">
+            <h1>[[item.name]]</h1>
+            <p>[[item.description]]</p>
+            <ul>
+              <template is="dom-repeat" items="{{__selectChapters(item.id)}}">
+                <pkc-chapter-preview
+                  chapter="[[item.position + 1]]"
+                  name="[[item.name]]"
+                  description="[[item.description]]">
+                </pkc-chapter-preview>
+              </template>
+            </ul>
+          </div>
         </template>
       </dom-repeat>
     </div>
@@ -45,6 +66,10 @@
             statePath: 'chapters'
           }
         };
+      }
+
+      __selectChapters(guideId) {
+        return this.chapters.filter(chapter => chapter.guide_id === guideId);
       }
     }
 
