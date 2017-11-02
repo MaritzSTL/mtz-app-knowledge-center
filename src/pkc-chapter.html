@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="redux-store.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="pkc-chapter">
@@ -11,14 +13,69 @@
       }
     </style>
 
+    <app-route
+        route="{{route}}"
+        pattern="/:id"
+        data="{{routeData}}">
+    </app-route>
+
+
+    <div role="navigation" class="breadcrumbs">
+      <a href="/">Knowledge Center</a> &#149
+      <a href="/browse#[[guide.id]]">[[guide.name]]</a> &#149
+      <a href="#">[[chapter.name]]</a>
+    </div>
+
     <div class="card">
-      AKLSDJGASDKJGDS
+      <h1>[[chapter.name]]</h1>
+      <p>[[chapter.content]]</p>
     </div>
   </template>
 
   <script>
-    class PkcChapter extends Polymer.Element {
+    class PkcChapter extends ReduxBehavior(Polymer.Element) {
       static get is() { return 'pkc-chapter'; }
+      static get properties() {
+        return {
+          routeData: Object,
+          route: Object,
+          chapters: {
+            type: Array,
+            statePath: 'chapters',
+            value: []
+          },
+          guides: {
+            type: Array,
+            statePath: 'guides',
+            value: []
+          },
+          chapter: {
+            computed: '__selectCurrentChapter(chapters, routeData.id)'
+          },
+          guide: {
+            computed: '__selectCurrentGuide(guides, chapter.guide_id)'
+          },
+          guideUrl: {
+            computed: '__guideAnchoredUrl(guide.id)'
+          }
+        };
+      }
+
+      __selectCurrentChapter(chapters, chapterId) {
+        return chapters.find((chapter) => chapter.id === parseInt(chapterId));
+      }
+
+      __selectCurrentGuide(guides, guideId) {
+        return guides.find((guide) => guide.id === parseInt(guideId));
+      }
+
+      __guideAnchoredUrl() {
+        if (this.chapter) {
+          return 'browse#' + this.chapter.guide_id;
+        }
+
+        return '';
+      }
     }
 
     window.customElements.define(PkcChapter.is, PkcChapter);
