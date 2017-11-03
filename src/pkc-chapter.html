@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
 <link rel="import" href="redux-store.html">
 <link rel="import" href="shared-styles.html">
 
@@ -10,6 +11,17 @@
         display: block;
 
         padding: 5px;
+      }
+
+      .content {
+        margin-left: 15vw;
+        margin-right: 15vw;
+        width: 70vw;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 300px;
       }
     </style>
 
@@ -29,6 +41,14 @@
     <div class="card">
       <h1>[[chapter.name]]</h1>
       <p>[[chapter.content]]</p>
+    </div>
+
+    <div class="content">
+      <marked-element>
+        <div slot="markdown-html"></div>
+        <script type="text/markdown" src="../chapters/0.md"></script>
+      </marked-element>
+
     </div>
   </template>
 
