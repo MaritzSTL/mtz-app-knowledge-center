@@ -31,7 +31,6 @@
         data="{{routeData}}">
     </app-route>
 
-
     <div role="navigation" class="breadcrumbs">
       <a href="/">Knowledge Center</a> &#149
       <a href="/browse#[[guide.id]]">[[guide.name]]</a> &#149
@@ -41,14 +40,13 @@
     <div class="card">
       <h1>[[chapter.name]]</h1>
       <p>[[chapter.content]]</p>
-    </div>
 
-    <div class="content">
-      <marked-element>
-        <div slot="markdown-html"></div>
-        <script type="text/markdown" src="../chapters/[[chapter.id]].md"></script>
-      </marked-element>
-
+      <div class="content">
+        <marked-element>
+          <div slot="markdown-html"></div>
+          <script type="text/markdown" src="../chapters/[[chapter.id]].md"></script>
+        </marked-element>
+      </div>
     </div>
   </template>
 
