@@ -3,7 +3,7 @@
 <link rel="import" href="redux-store.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="pkc-abstracts">
+<dom-module id="pkc-artifacts">
   <template>
     <style include="shared-styles">
       :host {
@@ -23,7 +23,7 @@
     <div role="navigation" class="breadcrumbs">
       <ul style="list-style-type: none;">
         <li style="display: inline-block;"><a href="/">Knowledge Center</a> &#149</li>
-      <li style="display: inline-block;">Abstracts</li>
+      <li style="display: inline-block;">Artifacts</li>
     </ul>
       <!--
       <a href="/browse#[[guide.id]]">[[guide.name]]</a> &#149
@@ -32,14 +32,14 @@
     </div>
 
     <div class="card">
-      <h1>Abstracts</h1>
-      <p>abstract text</p>
+      <h1>Artifacts</h1>
+      <p>artifact text</p>
     </div>
   </template>
 
   <script>
-    class PkcAbstracts extends ReduxBehavior(Polymer.Element) {
-      static get is() { return 'pkc-abstracts'; }
+    class PkcArtifacts extends ReduxBehavior(Polymer.Element) {
+      static get is() { return 'pkc-artifacts'; }
       static get properties() {
         return {
           routeData: Object,
@@ -47,6 +47,6 @@
         }
     }
 
-    window.customElements.define(PkcAbstracts.is, PkcAbstracts);
+    window.customElements.define(PkcArtifacts.is, PkcArtifacts);
   </script>
 </dom-module>

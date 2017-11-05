@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="pkc-browse.html">
 <link rel="lazy-import" href="pkc-chapter.html">
 <link rel="lazy-import" href="pkc-view404.html">
-<link rel="lazy-import" href="pkc-abstracts.html">
+<link rel="lazy-import" href="pkc-artifacts.html">
 
 <dom-module id="pkc-app">
   <template>
@@ -119,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <template>
               <a name="browse" href="[[rootPath]]browse">Guides</a>
               <a name="view2" href="[[rootPath]]view2">Log In</a>
-              <a name="abstracts" href="[[rootPath]]abstracts">Abstracts</a>
+              <a name="artifacts" href="[[rootPath]]artifacts">Artifacts</a>
             </template>
           </dom-if>
         </iron-selector>
@@ -129,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
     <pkc-browse name="browse"></pkc-browse>
     <pkc-chapter name="chapter" route="[[subroute]]"></pkc-chapter>
-    <pkc-abstracts name="abstracts"></pkc-abstracts>
+    <pkc-artifacts name="artifacts"></pkc-artifacts>
     <pkc-view404 name="view404"></pkc-view404>
   </iron-pages>
 
@@ -139,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
       <a name="browse" href="[[rootPath]]browse">Guides</a>
       <a name="view2" href="[[rootPath]]view2">Log In</a>
-      <a name="abstracts" href="[[rootPath]]abstracts">Abstracts</a>
+      <a name="artifacts" href="[[rootPath]]artifacts">Artifacts</a>
     </iron-selector>
   </app-drawer>
   </template>
