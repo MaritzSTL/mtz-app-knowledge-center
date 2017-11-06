@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="redux-store.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+<link rel="import" href="./redux-store.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="pkc-chapter">
@@ -11,6 +12,17 @@
 
         padding: 5px;
       }
+
+      .content {
+        margin-left: 15vw;
+        margin-right: 15vw;
+        width: 70vw;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 300px;
+      }
     </style>
 
     <app-route
@@ -19,7 +31,6 @@
         data="{{routeData}}">
     </app-route>
 
-
     <div role="navigation" class="breadcrumbs">
       <a href="/">Knowledge Center</a> &#149
       <a href="/browse#[[guide.id]]">[[guide.name]]</a> &#149
@@ -27,8 +38,13 @@
     </div>
 
     <div class="card">
-      <h1>[[chapter.name]]</h1>
-      <p>[[chapter.content]]</p>
+      <div class="content">
+        <h1>[[chapter.name]]</h1>
+        <marked-element>
+          <div slot="markdown-html"></div>
+          <script type="text/markdown" src="../chapters/[[chapter.id]].md"></script>
+        </marked-element>
+      </div>
     </div>
   </template>
 
