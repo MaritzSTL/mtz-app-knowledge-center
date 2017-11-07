@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="redux-store.html">
+<link rel="import" href="./pkc-analytics.html">
 
 <link rel="lazy-import" href="pkc-browse.html">
 <link rel="lazy-import" href="pkc-chapter.html">
@@ -106,6 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
+
+    <pkc-analytics
+        key="UA-86102655-2"
+        current-page="[[route]]">
+    </pkc-analytics>
 
     <!-- Main content -->
 

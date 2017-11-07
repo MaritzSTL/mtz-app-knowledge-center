@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-analytics-tracker-behavior/google-analytics-tracker-behavior.html">
+
+<dom-module id="pkc-analytics">
+  <script>
+    class PkcAnalytics extends Polymer.mixinBehaviors([Polymer.GoogleAnalyticsTrackerBehavior], Polymer.Element) {
+      static get is() { return 'pkc-analytics'; }
+
+      ready() {
+        super.ready();
+        this.trackPageView = this.trackPageView.bind(this);
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if (!this.gaInitialized) {
+          this.gaCreate(this.key);
+          this.gaSetDomainName(window.location.host);
+        }
+        window.addEventListener('location-changed', this.trackPageView);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        window.removeEventListener('location-changed', this.trackPageView);
+      }
+
+      trackPageView(event) {
+        this.gaTrackPageView(window.location.pathname);
+      }
+
+      static get properties() {
+        return {
+          key: {
+            type: String
+          }
+        }
+      }
+    }
+    window.customElements.define(PkcAnalytics.is, PkcAnalytics);
+  </script>
+</dom-module>
