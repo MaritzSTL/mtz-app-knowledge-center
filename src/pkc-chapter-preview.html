@@ -20,7 +20,7 @@
       }
 
       .card:hover {
-        box-shadow: 0 8px 100px rgba(194, 205, 223, 0.5);
+        box-shadow: 0 8px 100px rgba(194, 205, 223, 0.6);
       }
 
       .chapter-number {
@@ -29,10 +29,12 @@
 
       .chapter-name {
         line-height: 0.5;
+        margin-top: 0px;
       }
 
       .chapter-description {
         font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
       }
 
       a {
@@ -43,8 +45,8 @@
 
     <a href="/chapter/[[id]]">
       <div class="card">
-        <span class="chapter-number">Chapter [[chapter]]</span>
         <h2 class="chapter-name">[[name]]</h2>
+        <span class="chapter-number">Chapter [[chapter]]</span>
         <p class="chapter-description">[[description]]</p>
       </div>
     </a>

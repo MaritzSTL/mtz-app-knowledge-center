@@ -6,77 +6,76 @@
 <dom-module id="pkc-browse">
   <template>
     <style include="shared-styles">
-      :host {
-        padding: 10px;
-        display: inline-block;
-        position: relative;
-      }
+    :host {
+      padding: 10px;
+      display: inline-block;
+      position: relative;
+    }
 
-      .shelf {
-        padding-left: 20px;
-        padding-right: 20px;
-        flex: true;
-      }
+    .shelf {
+      padding-left: 20px;
+      padding-right: 20px;
+      flex: true;
+    }
 
-      .section-title {
-        color: rgba(54,49,43,0.3);
-        border-bottom: 2px solid rgba(205,183,155,0.2);
-        margin: 10px 10px 0px 10px;
-      }
+    .section-title {
+      color: rgba(54,49,43,0.3);
+      border-bottom: 2px solid rgba(205,183,155,0.2);
+      margin: 10px 10px 0px 10px;
+    }
 
-      .chapter-container {
-        display: flex;
-        flex-wrap: wrap;
-      }
+    .chapter-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
     </style>
 
     <div class="browse">
-      <h3 class="section-title">Guides</h3>
-        <template is="dom-repeat" items="[[guides]]" as="guide">
-          <div class="shelf" id="[[guide.slug]]">
-            <h1>[[guide.name]]</h1>
-            <p>[[guide.description]]</p>
-            <div class="chapter-container">
-              <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
-                <pkc-chapter-preview
-                  id="[[chapter.id]]"
-                  chapter="[[index]]"
-                  name="[[chapter.name]]"
-                  description="[[chapter.description]]">
-              </pkc-chapter-preview>
-            </template>
-          </div>
+      <template is="dom-repeat" items="[[guides]]" as="guide">
+        <div class="shelf" id="[[guide.slug]]">
+          <h1>[[guide.name]]</h1>
+          <p>[[guide.description]]</p>
+          <div class="chapter-container">
+            <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
+              <pkc-chapter-preview
+              id="[[chapter.id]]"
+              chapter="[[index]]"
+              name="[[chapter.name]]"
+              description="[[chapter.description]]">
+            </pkc-chapter-preview>
+          </template>
         </div>
-      </template>
-    </div>
+      </div>
+    </template>
+  </div>
 
-    <div>
-      <p>Yes, chapters start at 0. We're not <i>barbarians</i>, here.</p>
-    </div>
-  </template>
+  <div>
+    <p>Yes, chapters start at 0. We're not <i>barbarians</i>, here.</p>
+  </div>
+</template>
 
-  <script>
-    class PkcBrowse extends ReduxBehavior(Polymer.Element){
-      static get is() { return 'pkc-browse'; }
+<script>
+class PkcBrowse extends ReduxBehavior(Polymer.Element){
+  static get is() { return 'pkc-browse'; }
 
-      static get properties() {
-        return {
-          guides: {
-            type: Array,
-            statePath: 'guides'
-          },
-          chapters: {
-            type: Array,
-            statePath: 'chapters'
-          }
-        };
+  static get properties() {
+    return {
+      guides: {
+        type: Array,
+        statePath: 'guides'
+      },
+      chapters: {
+        type: Array,
+        statePath: 'chapters'
       }
+    };
+  }
 
-      __selectChapters(guideId) {
-        return this.chapters.filter(chapter => chapter.guide_id === guideId);
-      }
-    }
+  __selectChapters(guideId) {
+    return this.chapters.filter(chapter => chapter.guide_id === guideId);
+  }
+}
 
-    window.customElements.define(PkcBrowse.is, PkcBrowse);
-  </script>
+window.customElements.define(PkcBrowse.is, PkcBrowse);
+</script>
 </dom-module>
