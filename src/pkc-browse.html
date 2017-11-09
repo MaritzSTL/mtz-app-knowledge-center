@@ -15,7 +15,6 @@
     .shelf {
       padding-left: 20px;
       padding-right: 20px;
-      flex: true;
     }
 
     .section-title {
@@ -27,14 +26,18 @@
     .chapter-container {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: center;
     }
     </style>
 
     <div class="browse">
       <template is="dom-repeat" items="[[guides]]" as="guide">
         <div class="shelf" id="[[guide.slug]]">
-          <h1>[[guide.name]]</h1>
-          <p>[[guide.description]]</p>
           <div class="chapter-container">
             <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
               <pkc-chapter-preview
@@ -49,8 +52,8 @@
     </template>
   </div>
 
-  <div>
-    <p>Yes, chapters start at 0. We're not <i>barbarians</i>, here.</p>
+  <div class="footer">
+    <p>*<i>Yes, chapters start at 0. We're not </i>barbarians<i>, here.</i></p>
   </div>
 </template>
 
