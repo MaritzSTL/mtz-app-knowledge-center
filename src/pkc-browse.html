@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="redux-store.html">
 <link rel="import" href="pkc-chapter-preview.html">
@@ -58,6 +60,28 @@
       flex: 1;
       padding-left: 7px;
     }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+    }
+
+    iron-icon {
+      padding-left: 10px;
+      --iron-icon-stroke-color: lightgrey;
+    }
+
+    .non_technical {
+      fill: var(--paper-light-blue-50);
+    }
+
+    .under_construction {
+      fill: var(--paper-red-50);
+    }
+
+    .technical {
+      fill: #FFF;
+    }
     </style>
 
     <div class="browse">
@@ -106,6 +130,12 @@
         <p>You'll always know where to go next.</p>
       </div>
 
+      <div class="legend">
+        <span> <iron-icon icon="icons:label" class="non_technical"></iron-icon> Non-Technical </span>
+        <span> <iron-icon icon="icons:label" class="technical"></iron-icon> Technical </span>
+        <span> <iron-icon icon="icons:label" class="under_construction"></iron-icon> Under Construction</span>
+      </div>
+
       <template is="dom-repeat" items="[[guides]]" as="guide">
         <div class="shelf" id="[[guide.slug]]">
           <div class="chapter-container">
@@ -114,7 +144,8 @@
               id="[[chapter.id]]"
               chapter="[[index]]"
               name="[[chapter.name]]"
-              description="[[chapter.description]]">
+              description="[[chapter.description]]"
+              status="[[chapter.status]]">
             </pkc-chapter-preview>
           </template>
         </div>
