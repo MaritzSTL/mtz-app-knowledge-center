@@ -1,6 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<<<<<<< HEAD
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+=======
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+>>>>>>> 876a70203d6f4229525423e512eccece10984ec8
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="redux-store.html">
 <link rel="import" href="pkc-chapter-preview.html">
@@ -61,6 +68,7 @@
       padding-left: 7px;
     }
 
+<<<<<<< HEAD
     .legend {
       display: flex;
       justify-content: center;
@@ -82,12 +90,43 @@
     .technical {
       fill: #FFF;
     }
+=======
+    iron-icon {
+      fill: lightgreen;
+    }
     </style>
+
+    <style is="custom-style">
+      paper-button.indigo {
+        background-color: var(--app-primary-color);
+        color: white;
+        width: 30px;
+        margin: 0 auto;
+      }
+>>>>>>> 876a70203d6f4229525423e512eccece10984ec8
+    </style>
+
+        <paper-toast id="capabilitytoast" duration="0">
+          <p>These will eventually link out to chapters!</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Ship Crazy Fast </p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Fully Responsive</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Progressive Web Apps</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Works Offline</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Tap to install</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Even works on slow devices w/ bad connections</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Accessibility Baked In</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Easy i18n</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Future-proof</p>
+          <p> <iron-icon icon="icons:done"></iron-icon>Customizability</p>
+          <p> <iron-icon icon="icons:done"></iron-icon><strong>Simple</strong></p>
+          <paper-button on-click="__toggleToast" class="yellow-button">Close now!</paper-button>
+        </paper-toast>
 
     <div class="browse">
       <div class="introduction">
         <h1 class="promise">Get from zero to production bug fix in four weeks.</h1>
-        <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative. [how button]</p>
+        <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative.</p>
+        <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
         <p>But Polymer has a problem: all of the documentation is reference material, not teaching material. It's for people who already have mental models, not people who need to build them.</p>
         <div class="halfsies">
           <div class="split">
@@ -177,6 +216,10 @@ class PkcBrowse extends ReduxBehavior(Polymer.Element){
 
   __selectChapters(guideId) {
     return this.chapters.filter(chapter => chapter.guide_id === guideId);
+  }
+
+  __toggleToast() {
+    this.$.capabilitytoast.toggle();
   }
 }
 
