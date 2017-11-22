@@ -19,6 +19,18 @@
         width: 250px;
       }
 
+      .non_technical {
+        background-color: var(--paper-light-blue-50);
+      }
+
+      .under_construction {
+        background-color: var(--paper-red-50);
+      }
+
+      .technical {
+        background-color: #FFF;
+      }
+
       .card:hover {
         box-shadow: 0 8px 100px rgba(194, 205, 223, 0.6);
       }
@@ -46,7 +58,7 @@
     </style>
 
     <a href="/chapter/[[id]]">
-      <div class="card">
+      <div class$="[[computedClass]]">
         <h2 class="chapter-name">[[name]]</h2>
         <span class="chapter-number">Chapter [[chapter]]</span>
         <p class="chapter-description">[[description]]</p>
@@ -71,8 +83,18 @@
           },
           id: {
             type: String
+          },
+          status: {
+            type: String
+          },
+          computedClass: {
+            computed: '__computeClass(status)'
           }
         }
+      }
+
+      __computeClass(status) {
+        return "card " + this.status;
       }
     }
     window.customElements.define(PkcChapterPreview.is, PkcChapterPreview);
