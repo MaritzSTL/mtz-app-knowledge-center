@@ -11,13 +11,28 @@
   <template>
     <style include="shared-styles">
     :host {
-      padding: 10px;
       display: inline-block;
       position: relative;
     }
 
     h2 {
+      padding-top: 5%;
+      padding-bottom: 0;
+      font-family: 'Lato', sans-serif;
+      color: rgba(0, 0, 0, 1);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: 1.3em;
+    }
+
+    h3 {
+        padding-top: 30px;
+        padding-bottom: 20px;
+        font-family: 'Lato', sans-serif;
+        color: black;
+        text-transform: uppercase;
         letter-spacing: 3px;
+        font-size: 1.5em;
     }
 
     .shelf {
@@ -43,9 +58,11 @@
     }
 
     .introduction {
+      background-color: rgba(255, 255, 255, .75);
       display: flex;
       flex-direction: column;
-
+      padding-left: 70px;
+      padding-right: 70px;
       width: 90%;
       max-width: 900px;
       margin: 0 auto;
@@ -124,25 +141,25 @@
     <div class="browse">
       <div class="introduction">
         <h1 class="promise">Go from having zero knowledge of Polymer to fixing your first bug in under four weeks.</h1>
-        <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative.</p>
+        <p>Polymer allows you to put software in any person's hands, anywhere on earth, faster and more maintainably than its competitors.</p>
         <!--<paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button> -->
-        <p>But Polymer has a problem: all of the documentation is reference material, not teaching material. It's for people who already have mental models, not people who need to build them.</p>
+        <p>But Polymer has a problem: all of its documentation is reference material, not teaching material. Polymer's documentation is written for people who already understand Polymer, not those who are just getting started.</p>
         <!-- <div class="row">
           <div class="column">
             <img src="/images/sad_stick_man.png" alt="a sad looking stick man">
           </div>
           <div class="column"> -->
-            <p>What's the map? </p>
-            <p> What do I need to know?</p>
-            <p>When am I good enough to contribute to a production code base?</p>
-            <p>Where do I go when I get stuck?</p>
+          <p>So.</p>
+            <p>What do you need to know?</p>
+            <p>When are you good enough to contribute to a code base?</p>
+            <p>And where do you go when you get stuck?</p>
             <p><strong>That's what we're here for.</strong></p>
           <!-- </div>
         </div> -->
         <h3>What makes great teaching material?</h3>
-        <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. - Jeff Scheur</p>
-        <p>You can only teach people by linking new concepts with those they already understand. So you must understand where they're starting from.</p>
-        <p>People won't remember things if they don't think they're important. Once you know what you need students to understand, you have to find and <strong>motivate</strong> them to want to learn.</p>
+        <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. -- Jeff Scheur</p>
+        <p>You can only teach people new concepts by building off of those which they already understand.</p>
+        <p>Once you know what you need students to understand, you have to <strong>motivate</strong> them to learn.</p>
         <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
         <p>Students will be able to <strong>what?</strong></p>
         <div class="rows">
