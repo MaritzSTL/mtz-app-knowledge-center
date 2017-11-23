@@ -16,6 +16,10 @@
       position: relative;
     }
 
+    h2 {
+        letter-spacing: 3px;
+    }
+
     .shelf {
       padding-left: 20px;
       padding-right: 20px;
@@ -43,24 +47,26 @@
       flex-direction: column;
 
       width: 90%;
-      max-width: 590px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
     .promise {
       text-align: center;
+      padding-top: 30px;
+      line-height: 2em;
+      padding-bottom: 30px;
     }
 
-    .halfsies {
-      display: flex;
-      flex-wrap: wrap;
-      justify-conent: space-between;
-      width: 100%;
+    .column {
+        float: left;
+        width: 50%;
     }
 
-    .split {
-      flex: 1;
-      padding-left: 7px;
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
     }
 
     .legend {
@@ -117,38 +123,38 @@
 
     <div class="browse">
       <div class="introduction">
-        <h1 class="promise">Get from zero to production bug fix in four weeks.</h1>
+        <h1 class="promise">Go from having zero knowledge of Polymer to fixing your first bug in under four weeks.</h1>
         <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative.</p>
-        <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
+        <!--<paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button> -->
         <p>But Polymer has a problem: all of the documentation is reference material, not teaching material. It's for people who already have mental models, not people who need to build them.</p>
-        <div class="halfsies">
-          <div class="split">
+        <!-- <div class="row">
+          <div class="column">
             <img src="/images/sad_stick_man.png" alt="a sad looking stick man">
           </div>
-          <div class="split">
-            <p>What's the map? What do I need to know?</p>
+          <div class="column"> -->
+            <p>What's the map? </p>
+            <p> What do I need to know?</p>
             <p>When am I good enough to contribute to a production code base?</p>
             <p>Where do I go when I get stuck?</p>
             <p><strong>That's what we're here for.</strong></p>
-          </div>
-        </div>
+          <!-- </div>
+        </div> -->
         <h3>What makes great teaching material?</h3>
         <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. - Jeff Scheur</p>
         <p>You can only teach people by linking new concepts with those they already understand. So you must understand where they're starting from.</p>
         <p>People won't remember things if they don't think they're important. Once you know what you need students to understand, you have to find and <strong>motivate</strong> them to want to learn.</p>
         <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
         <p>Students will be able to <strong>what?</strong></p>
-        <div class="halfsies">
-          <div class="split">
+        <div class="rows">
+          <div class="column">
             <h2>Effective</h2>
             <ol>
               <li>What do my students know?</li>
               <li>Find Motivation</li>
               <li>Build incrementally</li>
             </ol>
-            <p>Get them to a point where they <i>actually know</i>.</p>
           </div>
-          <div class="split">
+          <div class="column">
             <h2>Ineffective</h2>
             <ol>
               <li>Includes everything right away</li>
@@ -157,7 +163,7 @@
             </ol>
           </div>
         </div>
-        <p>That's what this site is. Polymer's Missing Manual. The guides that should've been in the docs.</p>
+        <p>That's what this site is. Polymer's Missing Manual. The guide that should've been in the docs.</p>
         <p>An organized map, in the right sequence, that will take you from wherever you're at to having a sound mental model, so you don't get stuck.</p>
         <p>You'll always know where to go next.</p>
       </div>
