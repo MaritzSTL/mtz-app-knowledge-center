@@ -21,12 +21,18 @@
       font-family: 'Lato', sans-serif;
       color: rgba(0, 0, 0, 1);
       text-transform: uppercase;
+      font-weight: lighter;
       letter-spacing: .1em;
-      font-size: 1.3em;
+      text-align: center;
     }
 
     h3 {
         padding-top: 30px;
+        line-height: 1.5em;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        font-weight: lighter;
+        text-align: center;
         padding-bottom: 20px;
         font-family: 'Lato', sans-serif;
         color: black;
@@ -58,21 +64,34 @@
     }
 
     .introduction {
-      background-color: rgba(255, 255, 255, .75);
+      background-color: rgba(255, 255, 255, .95);
+      /* box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7); */
       display: flex;
       flex-direction: column;
-      padding-left: 70px;
-      padding-right: 70px;
+      padding-left: 7%;
+      padding-right: 7%;
+      padding-bottom: 40px;
       width: 90%;
+      min-width: 100px;
       max-width: 900px;
-      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    .column h2 {
+        text-align: left;
+    }
     .promise {
       text-align: center;
-      padding-top: 30px;
-      line-height: 2em;
-      padding-bottom: 30px;
+      width: 70%;
+      font-style: italic;
+      margin: auto;
+      font-size: 20px;
+      padding-top: 25px;
+      line-height: 1.7em;
+      padding-bottom: 25px;
     }
 
     .column {
@@ -140,7 +159,8 @@
 
     <div class="browse">
       <div class="introduction">
-        <h1 class="promise">Go from having zero knowledge of Polymer to fixing your first bug in under four weeks.</h1>
+        <h3>Our Promise</h3>
+        <p class = "promise">We'll take you from having zero knowledge of Polymer to fixing your first bug in under four weeks.</p>
         <p>Polymer allows you to put software in any person's hands, anywhere on earth, faster and more maintainably than its competitors.</p>
         <!--<paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button> -->
         <p>But Polymer has a problem: all of its documentation is reference material, not teaching material. Polymer's documentation is written for people who already understand Polymer, not those who are just getting started.</p>
@@ -157,7 +177,7 @@
           <!-- </div>
         </div> -->
         <h3>What makes great teaching material?</h3>
-        <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. -- Jeff Scheur</p>
+        <p class= "block_quote">The success of any teaching activity is defined by what students actually understood. &ndash; Jeff Scheur</p>
         <p>You can only teach people new concepts by building off of those which they already understand.</p>
         <p>Once you know what you need students to understand, you have to <strong>motivate</strong> them to learn.</p>
         <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
