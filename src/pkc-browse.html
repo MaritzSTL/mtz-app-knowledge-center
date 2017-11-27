@@ -28,14 +28,14 @@
     }
 
     h3 {
-        margin-top: 0px;
-        padding-top: 50px;
+        padding-top: 30px;
         line-height: 1.5em;
+        padding-bottom: 0px;
         margin-bottom: 0px;
         font-weight: bold;
         text-align: center;
-        padding-bottom: 50px;
-        font-family: 'Lato', sans-serif;
+        padding-bottom: 20px;
+        font-family: 'Work Sans', sans-serif;
         color: rgba(33, 35, 37, 1);
         text-transform: uppercase;
         letter-spacing: 3px;
@@ -69,10 +69,9 @@
       /* box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7); */
       display: flex;
       flex-direction: column;
-      padding-top: 20px;
-      padding-left: 70px;
-      padding-right: 70px;
-      padding-bottom: 50px;
+      padding-left: 7%;
+      padding-right: 7%;
+      padding-bottom: 40px;
       width: 90%;
       min-width: 100px;
       max-width: 900px;
@@ -82,29 +81,16 @@
       margin-right: auto;
     }
 
-    .full_promise {
-        background-color: rgba(229, 57, 115, .5);
-        margin-left: -70px;
-        margin-right: -70px;
-        margin-top: -20px;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-
     .column h2 {
         text-align: left;
-    }
-
-    .full_promise h3 {
-        padding-bottom: 25px;
     }
     .promise {
       text-align: center;
       width: 70%;
       font-style: italic;
       margin: auto;
-      font-size: 20px;
-      padding-top: 0px;
+      font-size: 18px;
+      padding-top: 25px;
       line-height: 1.7em;
       padding-bottom: 25px;
     }
@@ -159,13 +145,10 @@
 
     <style is="custom-style">
       paper-button.indigo {
-        margin-left: 40%;
-        margin-top: 10px;
-        margin-right: 0px;
-        color: rgba(33, 35, 37, 1);
-        margin-bottom: 50px;
-        border-style: solid;
-        width: 200px;
+        background-color: var(--app-primary-color);
+        color: white;
+        width: 30px;
+        margin: 0 auto;
       }
     </style>
 
@@ -191,12 +174,10 @@
 
       <template is="dom-if" if="{{displayIntro}}">
         <div class="introduction">
-            <div class="full_promise">
-              <h3>Our Promise</h3>
-              <p class = "promise">We'll take you from having zero knowledge of Polymer to fixing your first bug in under four weeks.</p>
-              <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
-            </div>
+          <h3>Our Promise</h3>
+          <p class = "promise">We'll take you from having zero knowledge of Polymer to fixing your first bug in under four weeks.</p>
           <p>Polymer allows you to put software in any person's hands, anywhere on earth, faster and more maintainably than its competitors.</p>
+          <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
           <p>But Polymer has a problem: all of its documentation is reference material, not teaching material. Polymer's documentation is written for people who already understand Polymer, not those who are just getting started.</p>
           <p>So.</p>
           <p>What do you need to know?</p>
