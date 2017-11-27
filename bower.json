@@ -20,7 +20,8 @@
     "iron-icons": "^2.0.1",
     "paper-button": "^2.0.0",
     "paper-toast": "^2.0.0",
-    "marked-element": "PolymerElements/marked-element#^2.3.2"
+    "marked-element": "PolymerElements/marked-element#^2.3.2",
+    "app-storage": "^2.0.2"
   },
   "resolutions": {
     "polymer": "^2.0.0"
