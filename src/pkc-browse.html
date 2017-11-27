@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
@@ -41,7 +42,7 @@
     .introduction {
       display: flex;
       flex-direction: column;
-
+      padding-bottom: 1em;
       width: 90%;
       max-width: 590px;
       margin: 0 auto;
@@ -63,28 +64,30 @@
       padding-left: 7px;
     }
 
+    #toggleIntroButton {
+      cursor: pointer;
+      background-color: #c62828;
+      color: white;
+      width: fit-content;
+      margin: 0 auto;
+    }
     .legend {
       display: flex;
       justify-content: center;
     }
-
     iron-icon {
       padding-left: 10px;
       --iron-icon-stroke-color: lightgrey;
     }
-
     .non_technical {
       fill: var(--paper-light-blue-50);
     }
-
     .under_construction {
       fill: var(--paper-red-50);
     }
-
     .technical {
       fill: #FFF;
     }
-
     iron-icon {
       fill: lightgreen;
     }
@@ -118,49 +121,56 @@
     <div class="browse">
       <div class="introduction">
         <h1 class="promise">Get from zero to production bug fix in four weeks.</h1>
-        <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative.</p>
-        <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
-        <p>But Polymer has a problem: all of the documentation is reference material, not teaching material. It's for people who already have mental models, not people who need to build them.</p>
-        <div class="halfsies">
-          <div class="split">
-            <img src="/images/sad_stick_man.png" alt="a sad looking stick man">
-          </div>
-          <div class="split">
-            <p>What's the map? What do I need to know?</p>
-            <p>When am I good enough to contribute to a production code base?</p>
-            <p>Where do I go when I get stuck?</p>
-            <p><strong>That's what we're here for.</strong></p>
-          </div>
-        </div>
-        <h3>What makes great teaching material?</h3>
-        <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. - Jeff Scheur</p>
-        <p>You can only teach people by linking new concepts with those they already understand. So you must understand where they're starting from.</p>
-        <p>People won't remember things if they don't think they're important. Once you know what you need students to understand, you have to find and <strong>motivate</strong> them to want to learn.</p>
-        <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
-        <p>Students will be able to <strong>what?</strong></p>
-        <div class="halfsies">
-          <div class="split">
-            <h2>Effective</h2>
-            <ol>
-              <li>What do my students know?</li>
-              <li>Find Motivation</li>
-              <li>Build incrementally</li>
-            </ol>
-            <p>Get them to a point where they <i>actually know</i>.</p>
-          </div>
-          <div class="split">
-            <h2>Ineffective</h2>
-            <ol>
-              <li>Includes everything right away</li>
-              <li>Dives into irrelevant details</li>
-              <li>Relies on gimmicks instead of motivation</li>
-            </ol>
-          </div>
-        </div>
-        <p>That's what this site is. Polymer's Missing Manual. The guides that should've been in the docs.</p>
-        <p>An organized map, in the right sequence, that will take you from wherever you're at to having a sound mental model, so you don't get stuck.</p>
-        <p>You'll always know where to go next.</p>
-      </div>
+        <template is="dom-if" if="{{displayIntro}}">
+            <p>Polymer will let you put software in every single person's hands, everywhere on earth, faster and more maintainably than any alternative. [how button]</p>
+            <p>But Polymer has a problem: all of the documentation is reference material, not teaching material. It's for people who already have mental models, not people who need to build them.</p>
+            <div class="halfsies">
+              <div class="split">
+                <img src="/images/sad_stick_man.png" alt="a sad looking stick man">
+              </div>
+              <div class="split">
+                <p>What's the map? What do I need to know?</p>
+                <p>When am I good enough to contribute to a production code base?</p>
+                <p>Where do I go when I get stuck?</p>
+                <p><strong>That's what we're here for.</strong></p>
+              </div>
+            </div>
+            <h3>What makes great teaching material?</h3>
+            <p>The success of any teaching activity is defined by what students <strong>actually understood</strong>. - Jeff Scheur</p>
+            <p>You can only teach people by linking new concepts with those they already understand. So you must understand where they're starting from.</p>
+            <p>People won't remember things if they don't think they're important. Once you know what you need students to understand, you have to find and <strong>motivate</strong> them to want to learn.</p>
+            <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
+            <p>Students will be able to <strong>what?</strong></p>
+            <div class="halfsies">
+              <div class="split">
+                <h2>Effective</h2>
+                <ol>
+                  <li>What do my students know?</li>
+                  <li>Find Motivation</li>
+                  <li>Build incrementally</li>
+                </ol>
+                <p>Get them to a point where they <i>actually know</i>.</p>
+              </div>
+              <div class="split">
+                <h2>Ineffective</h2>
+                <ol>
+                  <li>Includes everything right away</li>
+                  <li>Dives into irrelevant details</li>
+                  <li>Relies on gimmicks instead of motivation</li>
+                </ol>
+              </div>
+            </div>
+            <p>That's what this site is. Polymer's Missing Manual. The guides that should've been in the docs.</p>
+            <p>An organized map, in the right sequence, that will take you from wherever you're at to having a sound mental model, so you don't get stuck.</p>
+            <p>You'll always know where to go next.</p>
+        </template>
+        <paper-button raised on-click="toggleIntro" id="toggleIntroButton">
+          <template is="dom-if" if="[[!displayIntro]]">Tell me more!</template>
+          <template is="dom-if" if="[[displayIntro]]">Got it!</template>
+        </paper-button>
+        <app-localstorage-document key="introStatus" data="{{introStatus}}"></app-localstorage-document>
+
+      </div> <!-- /introduction -->
 
       <div class="legend">
         <span> <iron-icon icon="icons:label" class="non_technical"></iron-icon> Non-Technical </span>
@@ -203,12 +213,28 @@ class PkcBrowse extends ReduxBehavior(Polymer.Element){
       chapters: {
         type: Array,
         statePath: 'chapters'
-      }
+      },
+      displayIntro: {
+        computed: '__computeDisplayIntro(introStatus)'
+      },
+      introStatus: {
+        type: Object,
+        notify: true,
+        value: 'open'
+      },
     };
   }
 
   __selectChapters(guideId) {
     return this.chapters.filter(chapter => chapter.guide_id === guideId);
+  }
+
+  __computeDisplayIntro(introStatus){
+      return this.introStatus === "open";
+  }
+
+  toggleIntro(){
+    this.introStatus = (this.introStatus === "open") ? "closed" : "open";
   }
 
   __toggleToast() {
