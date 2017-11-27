@@ -117,10 +117,10 @@
             <p>You'll always know where to go next.</p>
         </template>
         <paper-button raised on-click="toggleIntro" id="toggleIntroButton">
-          <template is="dom-if" if="{{!displayIntro}}">Tell me more!</template>
-          <template is="dom-if" if="{{displayIntro}}">Got it!</template>
+          <template is="dom-if" if="[[!displayIntro]]">Tell me more!</template>
+          <template is="dom-if" if="[[displayIntro]]">Got it!</template>
         </paper-button>
-        <app-localstorage-document key="intro" data="{{showIntro}}"></app-localstorage-document>
+        <app-localstorage-document key="introStatus" data="{{introStatus}}"></app-localstorage-document>
 
       </div> <!-- /introduction -->
 
@@ -161,44 +161,30 @@ class PkcBrowse extends ReduxBehavior(Polymer.Element){
       },
       // boolean property to pass to dom-if
       displayIntro: {
-        type: Boolean,
-        notify: true,
-        value: false,
+        computed: '__computeDisplayIntro(introStatus)'
       },
       // bindable property to pass to app-localStorage
       // diff from displayIntro's value b/c this has to be an object
       // value will be hide or display
-      showIntro: {
+      introStatus: {
         type: Object,
         notify: true,
-        value: 'hide',
+        value: 'open'
       },
-
     };
   }
-
-  ready(){
-    super.ready();
-    function checkLocalStorage(){
-      if (localStorage.showIntro === 'hide') {
-        displayIntro = false;
-      } else {
-        displayIntro = true;
-        showIntro = 'display';
-      }
-    };
-  }
-
-
 
   __selectChapters(guideId) {
     return this.chapters.filter(chapter => chapter.guide_id === guideId);
   }
 
-  toggleIntro(){
-    displayIntro = !displayIntro;
+  __computeDisplayIntro(introStatus){
+      return this.introStatus === "open";
   }
 
+  toggleIntro(){
+    this.introStatus = (this.introStatus === "open") ? "closed" : "open";
+  }
 
 }
 
