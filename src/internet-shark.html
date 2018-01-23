@@ -1,16 +1,20 @@
-<template id="internet-shark-template">
-  <img src="https://images.pexels.com/photos/67854/shark-fish-hammerhead-shark-aquarium-67854.jpeg?w=940&h=650&dpr=2&auto=compress&cs=tinysrgb"></img>
-</template>
-
 <script>
-var internetSharkPrototype = Object.create(HTMLElement.prototype, {
-  createdCallback: {
-    value: function() {
-      var t = document.querySelector('#internet-shark-template');
-      var clone = document.importNode(t.content, true);
-      this.createShadowRoot().appendChild(clone);
-    }
+class InternetShark extends HTMLElement {
+  constructor() {
+    super();
   }
-});
-document.registerElement('internet-shark', {prototype: internetSharkPrototype});
+
+  connectedCallback() {
+    console.log("internet shark reporting for duty");
+    var img = document.createElement('img');
+    img.alt = 'SURFERS BeWaRe';
+    img.src = 'images/shark.png';
+    img.width = '150';
+    img.height = '150';
+    img.className = 'internet-shark';
+    this.appendChild(img);
+  }
+}
+
+customElements.define('internet-shark', InternetShark);
 </script>

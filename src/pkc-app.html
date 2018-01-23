@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="pkc-view404.html">
 <link rel="lazy-import" href="pkc-artifacts.html">
 <link rel="lazy-import" href="pkc-login.html">
+<link rel="lazy-import" href="pkc-smorgasbord.html">
 
 <dom-module id="pkc-app">
   <template>
@@ -136,9 +137,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header>
 
 
-
   <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
     <pkc-browse name="browse"></pkc-browse>
+    <pkc-smorgasbord name="smorgasbord"></pkc-smorgasbord>
     <pkc-chapter name="chapter" route="[[subroute]]"></pkc-chapter>
     <pkc-artifacts name="artifacts"></pkc-artifacts>
     <pkc-login name="login"></pkc-login>
