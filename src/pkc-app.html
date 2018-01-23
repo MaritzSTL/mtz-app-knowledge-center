@@ -160,6 +160,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class PkcApp extends Polymer.Element {
       static get is() {
+        //used to make sure imports work. pkc-browse works.
+        customElements.whenDefined('pkc-browse').then(function() {
+        console.log('It worked!');
+    });
         return 'pkc-app';
       }
 
