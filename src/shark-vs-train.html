@@ -1,0 +1,21 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="shark-vs-train">
+  <template>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ra2QESKwBTw"
+         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+         Choo choo...
+  </template>
+
+  <script>
+    class SharkVsTrain extends Polymer.Element {
+      static get is() {
+          return 'shark-vs-train' }
+    }
+    customElements.whenDefined('shark-vs-train').then(function() {
+  console.log('It worked! basic-element hurr');
+});
+window.customElements.define(SharkVsTrain.is, SharkVsTrain);
+  </script>
+</dom-module>
