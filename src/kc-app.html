@@ -23,7 +23,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 
 <link rel="import" href="pages/kc-app-pages.html">
+<link rel="import" href="mtz-redux-store-mixin.html">
 
+<!-- TODO Ensure analytics are still in tact -->
 <link rel="import" href="kc-analytics.html">
 <link rel="import" href="kc-app-breakpoints.html">
 <link rel="import" href="my-icons.html">
@@ -97,7 +99,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-drawer>
 
       <kc-app-pages
-        selected-page="[[selectedPage]]"
         pages="{{pages}}"
       ></kc-app-pages>
 
@@ -110,11 +111,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class KcApp extends Polymer.Element {
+    class KcApp extends ReduxMixin(Polymer.Element) {
       static get is() {
         return 'kc-app';
       }
-
       static get properties() {
         return {
           // This shouldn't be neccessary, but the Analyzer isn't picking up
@@ -122,12 +122,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           rootPath: String,
         };
       }
-
+      static get observers() {
+        return [
+          '__updateState(selectedPage)'
+        ];
+      }
+      __updateState(selectedPage) {
+        if (!selectedPage) return;
+        this.dispatch({
+          type: 'SELECT_PAGE',
+          name: selectedPage
+        })
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
       _toggleDrawer() {
         this.$.drawer.toggle();
       }
     }
-
     window.customElements.define(KcApp.is, KcApp);
   </script>
 </dom-module>

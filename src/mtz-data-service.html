@@ -1,0 +1,30 @@
+<script>
+	const dataService = store => next => action => {
+		/*
+		Pass all actions through by default
+		*/
+		switch (action.type) {
+			case 'SELECT_SUBJECT': {
+				const subject = action.name || '';
+				if (!subject) return state;
+				ajax.params = { query: `{ subject(name: "${subject}") { name label } }` };
+				// TODO: Retrieve data from local storage if already present
+				return ajax.generateRequest().completes.then(({response}) => {
+					// TODO
+					// 1. Cache query results
+					next({
+						type: 'SELECT_SUBJECT',
+						subject,
+						data: response.data || {}
+					});
+				}, (err) => {
+					// TODO Handle error case
+				});
+				break;
+			}
+			default: {
+				break
+			}
+		}
+	}
+</script>

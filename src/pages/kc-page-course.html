@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../mtz-redux-store-mixin.html">
+
+<dom-module id="kc-page-course">
+  <template>
+    <style>
+    </style>
+
+    [[selectedSubject]]
+
+  </template>
+  <script>
+    class KcPageCourse extends ReduxMixin(Polymer.Element) {
+      static get is() { return 'kc-page-course'; }
+      static get properties() {
+        return {
+          selectedSubject: {
+            type: String,
+            statePath: 'selectedSubject'
+          },
+          subject: {
+            type: Object,
+            statePath: 'subject'
+          }
+        };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+    }
+    window.customElements.define(KcPageCourse.is, KcPageCourse);
+  </script>
+</dom-module>

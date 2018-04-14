@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-styles/shadow.html">
 
+<link rel="import" href="../mtz-redux-store-mixin.html">
+
 <dom-module id="kc-page-subjects">
   <template>
     <style>
@@ -29,12 +31,6 @@
       }
     </style>
 
-    <app-route
-      route="{{route}}"
-      pattern="/:subject"
-      subroute="{{subroute}}"
-    ></app-route>
-
     <div class="option-grid">
       <iron-list
         items="[[subjects]]"
@@ -42,42 +38,39 @@
         scroll-target="document"
         grid>
         <template>
-          <a class="container" href$="[[subject.name]]">
+          <div class="container" on-click="selectSubject">
             <paper-card
               heading="[[subject.label]]"
               image="[[subject.image]]"
               alt="[[subject.alt]]"
+              data-subject="[[subject.name]]"
             ></paper-card>
-          </a>
+          </div>
         </template>
       </iron-list>
     </div>
 
   </template>
   <script>
-    class KcPageSubjects extends Polymer.Element {
+    class KcPageSubjects extends ReduxMixin(Polymer.Element) {
       static get is() { return 'kc-page-subjects'; }
       static get properties() {
         return {
-          /* Subjects selectable by user */
           subjects: {
             type: Array,
-            value() {
-              // TODO: Return to empty array. this is used for construction purposes.
-              return [{
-                name: 'polymer',
-                label: 'Polymer',
-                image: 'images/manifest/icon-512x512.png',
-                alt: 'Polymer Logo'
-              },{
-                label: 'Mathematics'
-              }, {
-                label: 'Java'
-              }];
-            }
-          },
-          route: String
+            statePath: 'subjects'
+          }
         };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+      selectSubject(e) {
+        if (!e || !e.target || !e.target.dataSubject) return;
+        this.dispatch({
+          type: 'SELECT_SUBJECT',
+          name: e.target.dataSubject
+        });
       }
     }
     window.customElements.define(KcPageSubjects.is, KcPageSubjects);

@@ -1,0 +1,69 @@
+<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<script src="../node_modules/redux/dist/redux.js"></script>
+
+<link rel="import" href="mtz-data-service.html">
+
+<script>
+    const ajax = document.createElement('iron-ajax');
+    ajax.url = 'http://127.0.0.1:4001/graphql';
+    ajax.method = 'POST';
+    ajax.handleAs = 'json';
+    ajax.debounceDuration = 300;
+
+    // TODO Use middleware on change route to auto-fetch data? Caching can also be
+    // done in middleware.
+    const initial = {
+      selectedPage: 'subjects',
+      selectedSubject: '',
+      // TODO Implement pages grabbing element (need an action to update).
+      pages: [],
+      subjects: [{
+        name: 'polymer',
+        label: 'Polymer',
+        image: 'images/manifest/icon-512x512.png',
+        alt: 'Polymer Logo'
+      },{
+        label: 'Mathematics'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }, {
+        label: 'Java'
+      }]
+    };
+    const reducer = (state = initial, action) => {
+        switch (action.type) {
+          case 'SELECT_PAGE': {
+            return Object.assign({}, state, { selectedPage: action.name });
+            break;
+          }
+          // TODO: Possible to replace case strings with actions defined above?
+          case 'SELECT_SUBJECT': {
+            return Object.assign({}, state, {
+              selectedPage: 'course',
+              selectedSubject: action.subject,
+              subject: action.data
+            });
+            break;
+          }
+          default: {
+            return state;
+            break;
+          }
+        }
+    };
+    const store = Redux.createStore(reducer, Redux.applyMiddleware(dataService));
+    ReduxMixin = PolymerRedux(store);
+</script>

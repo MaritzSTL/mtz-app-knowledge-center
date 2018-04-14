@@ -2,14 +2,15 @@
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
-
 <link rel="import" href="../kc-analytics.html">
+<link rel="import" href="../mtz-redux-store-mixin.html">
 
 <!-- TODO: Add lazy imports -->
 <link rel="import" href="kc-page-artifacts.html">
 <link rel="import" href="kc-page-browse.html">
 <link rel="import" href="kc-page-chapter.html">
 <link rel="import" href="kc-page-chapter-preview.html">
+<link rel="import" href="kc-page-course.html">
 <link rel="import" href="kc-page-subjects.html">
 <link rel="import" href="kc-page-login.html">
 <link rel="import" href="kc-page-not-found.html">
@@ -21,43 +22,15 @@
       current-page="[[route]]"
     ></kc-analytics>
 
-    <app-location
-      route="{{route}}"
-    ></app-location>
-    <app-route
-      route="{{route}}"
-      pattern="/:page"
-      data="{{routeData}}"
-      tail="{{subroute}}"
-    ></app-route>
-
     <iron-pages selected="[[selectedPage]]" items="{{__pageElements}}" attr-for-selected="name">
       <kc-page-subjects
         name="subjects"
         label="Subjects"
-        route="[[subroute]]"
       ></kc-page-subjects>
-      <!-- <kc-page-artifacts
-        name="artifacts"
-        label="Artifacts"
-      ></kc-page-artifacts> -->
-      <kc-page-browse
-        name="browse"
-        label="Browse"
-      ></kc-page-browse>
-      <kc-page-chapter
-        name="chapter"
-        label="Chapter"
-      ></kc-page-chapter>
-      <!-- <kc-page-chapter-preview
-        name="chapter-preview"
-        label="Chapter Preview"
-      ></kc-page-chapter-preview> -->
-      <!-- <kc-page-login
-        name="login"
-        label="Login"
-      ></kc-page-login> -->
-      <!-- Hidden pages -->
+      <kc-page-course
+        name="course"
+        label="Course"
+      ></kc-page-course>
       <kc-page-not-found
         name="not-found"
         hidden
@@ -66,16 +39,16 @@
 
   </template>
   <script>
-    class KcAppPages extends Polymer.Element {
+    class KcAppPages extends ReduxMixin(Polymer.Element) {
       static get is() {
         return 'kc-app-pages';
       }
+      // TODO pages object violates redux. How to extract from page elements?
       static get properties() {
         return {
           selectedPage: {
             type: String,
-            value: 'subjects',
-            observer: '__updateRouteData'
+            statePath: 'selectedPage'
           },
           /*
            * Pages available for navigation. NOTE: pages with the hidden
@@ -92,6 +65,9 @@
           }
         };
       }
+      connectedCallback() {
+        super.connectedCallback();
+      }
       /**
        * Compute the pages from the page HTMLElements. Elements with the hidden
        * property are excluded.
@@ -107,14 +83,6 @@
             label: pageElement.getAttribute('label') || ''
           };
         });
-      }
-      /**
-       * Update route data to reflect selected page.
-       * @private
-       * @param {String} page - Page with which the route should be updated.
-       */
-      __updateRouteData(page) {
-        this.set('routeData.page', selectedPage);
       }
     }
     window.customElements.define(KcAppPages.is, KcAppPages);
