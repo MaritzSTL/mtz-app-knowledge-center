@@ -1,0 +1,85 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+
+<dom-module id="kc-page-subjects">
+  <template>
+    <style>
+      :host {
+        display: flex;
+      }
+      .option-grid {
+        height: 95vh;
+        width: 95vw;
+      }
+      .container {
+        margin: 5px;
+      }
+      paper-card {
+        display: flex;
+        padding: 0 5px 5px 5px;
+        margin: 5px;
+        width: 250px;
+        min-height: 300px;
+        /* TODO Set minimums for responsiveness */
+      }
+      paper-card:hover {
+        @apply --shadow-elevation-12dp;
+      }
+    </style>
+
+    <app-route
+      route="{{route}}"
+      pattern="/:subject"
+      subroute="{{subroute}}"
+    ></app-route>
+
+    <div class="option-grid">
+      <iron-list
+        items="[[subjects]]"
+        as="subject"
+        scroll-target="document"
+        grid>
+        <template>
+          <a class="container" href$="[[subject.name]]">
+            <paper-card
+              heading="[[subject.label]]"
+              image="[[subject.image]]"
+              alt="[[subject.alt]]"
+            ></paper-card>
+          </a>
+        </template>
+      </iron-list>
+    </div>
+
+  </template>
+  <script>
+    class KcPageSubjects extends Polymer.Element {
+      static get is() { return 'kc-page-subjects'; }
+      static get properties() {
+        return {
+          /* Subjects selectable by user */
+          subjects: {
+            type: Array,
+            value() {
+              // TODO: Return to empty array. this is used for construction purposes.
+              return [{
+                name: 'polymer',
+                label: 'Polymer',
+                image: 'images/manifest/icon-512x512.png',
+                alt: 'Polymer Logo'
+              },{
+                label: 'Mathematics'
+              }, {
+                label: 'Java'
+              }];
+            }
+          },
+          route: String
+        };
+      }
+    }
+    window.customElements.define(KcPageSubjects.is, KcPageSubjects);
+  </script>
+</dom-module>

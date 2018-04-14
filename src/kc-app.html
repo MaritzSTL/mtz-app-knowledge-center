@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       app-header {
         color: #fff;
-        background-color: #E53973;
+        background-color: #3F51B5;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
       }
       app-header paper-icon-button {
@@ -73,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" effects="waterfall" condenses reveals>
           <app-toolbar>
             <paper-icon-button id="toggle" icon="my-icons:menu" on-click="_toggleDrawer" hidden$="[[!narrow]]"></paper-icon-button>
-            <paper-tabs selected="[[selectedPage]]" attr-for-selected="name" class="header-tabs" role="navigation" hidden$="[[narrow]]">
+            <paper-tabs selected="{{selectedPage}}" attr-for-selected="name" class="header-tabs" role="navigation" hidden$="[[narrow]]">
               <dom-repeat items="[[pages]]" as="page">
                 <template>
                   <paper-tab name="[[page.name]]">[[page.label]]</paper-tab>
@@ -85,6 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-header-layout>
 
       <!-- Drawer content -->
+      <!-- TODO Handle responsiveness -->
       <app-drawer id="drawer" slot="drawer" class="app-drawer" swipe-open>
         <paper-tabs class="tabs">
           <dom-repeat items="[[pages]]" as="page">
