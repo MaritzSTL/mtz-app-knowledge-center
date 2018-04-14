@@ -8,9 +8,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
-<dom-module id="pkc-view404">
+<dom-module id="kc-page-not-found">
   <template>
     <style>
       :host {
@@ -20,12 +20,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    Oops you hit a d404. <a href="[[rootPath]]">Head back to home.</a>
+    Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
   </template>
 
   <script>
-    class PkcView404 extends Polymer.Element {
-      static get is() { return 'pkc-view404'; }
+    class KcPageNotFound extends Polymer.Element {
+      static get is() { return 'kc-page-not-found'; }
       static get properties() {
         return {
           // This shouldn't be neccessary, but the Analyzer isn't picking up
@@ -34,7 +34,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
     }
-
-    window.customElements.define(PkcView404.is, PkcView404);
+    window.customElements.define(KcPageNotFound.is, KcPageNotFound);
   </script>
 </dom-module>

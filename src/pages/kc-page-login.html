@@ -1,0 +1,42 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="kc-login">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 5px;
+      }
+    </style>
+
+    <app-route
+        route="{{route}}"
+        pattern="/:id"
+        data="{{routeData}}">
+    </app-route>
+
+
+
+
+    <div class="card">
+      <h1>Log In</h1>
+      <p>coming soon...</p>
+    </div>
+  </template>
+
+  <script>
+    class KcLogin extends Polymer.Element {
+      static get is() { return 'kc-login'; }
+      static get properties() {
+        return {
+          routeData: Object,
+          route: Object
+        };
+      }
+    }
+    window.customElements.define(KcLogin.is, KcLogin);
+  </script>
+</dom-module>

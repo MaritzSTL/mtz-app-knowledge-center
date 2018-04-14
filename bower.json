@@ -1,7 +1,10 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "mtz-app-knowledge-center",
   "authors": [
-    "The Polymer Authors"
+    "Chris Zemple",
+    "Hayden McParlane",
+    "Natalie Piontek",
+    "Shawn Barnes"
   ],
   "license": "https://polymer.github.io/LICENSE.txt",
   "dependencies": {
@@ -19,6 +22,8 @@
     "google-analytics-tracker-behavior": "^2.0.1",
     "iron-icons": "^2.0.1",
     "paper-button": "^2.0.0",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "paper-tabs": "PolymerElements/paper-tabs#^2.0.0",
     "paper-toast": "^2.0.0",
     "marked-element": "PolymerElements/marked-element#^2.3.2",
     "app-storage": "^2.0.2"

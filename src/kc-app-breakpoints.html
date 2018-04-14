@@ -1,0 +1,119 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+
+<dom-module id="kc-app-breakpoints">
+  <template>
+    <style>
+      :host { display: none; }
+    </style>
+
+    <iron-media-query
+      query-matches="{{xsmall}}"
+      query="max-width: 599px"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{small}}"
+      query="min-width: 500px and max-width: 1023px"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{medium}}"
+      query="min-width: 1024px and max-width: 1439px"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{large}}"
+      query="min-width: 1440px and max-width: 1919px"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{xlarge}}"
+      query="min-width: 1920px"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{smallHandset}}"
+      query="(max-width: 359px and orientation: portrait), (min-width: 480px and max-width: 599px and orientation: landscape)"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{medHandset}}"
+      query="(min-width: 360px and max-width: 399px and orientation: portrait), (min-width: 600px and max-width: 719px and orientation: landscape)"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{largeHandset}}"
+      query="(min-width: 400px and max-width: 599px and orientation: portrait), (min-width: 720px and max-width: 959px and orientation: landscape)"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{smallTablet}}"
+      query="(min-width: 600px and max-width: 719px and orientation: portrait), (min-width: 960px and max-width: 1023px and orientation: landscape)"
+    ></iron-media-query>
+    <iron-media-query
+      query-matches="{{largeTablet}}"
+      query="(min-width: 720px and max-width: 959px and orientation: portrait), (min-width: 1024px and max-width: 1439px and orientation: landscape)"
+    ></iron-media-query>
+  </template>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class KcAppBreakpoints extends Polymer.Element {
+      // eslint-disable-next-line require-jsdoc
+      static get is() {
+        return 'kc-app-breakpoints';
+      }
+      // eslint-disable-next-line require-jsdoc
+      static get properties() {
+        return {
+          xsmall: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('max-width: 599px').matches,
+          },
+          small: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('min-width: 600px and max-width: 1023px').matches,
+          },
+          medium: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('min-width: 1024px and max-width: 1439px').matches,
+          },
+          large: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('min-width: 1440px and max-width: 1919px').matches,
+          },
+          xlarge: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('min-width: 1920px').matches,
+          },
+          smallHandset: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('(max-width: 359px and orientation: portrait), (min-width: 480px and max-width: 599px and orientation: landscape)').matches,
+          },
+          medHandset: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('(min-width: 360px and max-width: 399px and orientation: portrait), (min-width: 600px and max-width: 719px and orientation: landscape)').matches,
+          },
+          largeHandset: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('(min-width: 400px and max-width: 599px and orientation: portrait), (min-width: 720px and max-width: 959px and orientation: landscape)').matches,
+          },
+          smallTablet: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('(min-width: 600px and max-width: 719px and orientation: portrait), (min-width: 960px and max-width: 1023px and orientation: landscape)').matches,
+          },
+          largeTablet: {
+            type: Boolean,
+            notify: true,
+            value: window.matchMedia('(min-width: 720px and max-width: 959px and orientation: portrait), (min-width: 1024px and max-width: 1439px and orientation: landscape)').matches,
+          },
+        };
+      }
+    }
+    customElements.define(KcAppBreakpoints.is, KcAppBreakpoints);
+  </script>
+</dom-module>

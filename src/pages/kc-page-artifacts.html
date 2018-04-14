@@ -1,9 +1,8 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="redux-store.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../shared-styles.html">
 
-<dom-module id="pkc-artifacts">
+<dom-module id="kc-artifacts">
   <template>
     <style include="shared-styles">
       :host {
@@ -38,15 +37,15 @@
   </template>
 
   <script>
-    class PkcArtifacts extends ReduxBehavior(Polymer.Element) {
-      static get is() { return 'pkc-artifacts'; }
+    class KcArtifacts extends Polymer.Element {
+      static get is() { return 'kc-artifacts'; }
       static get properties() {
         return {
           routeData: Object,
-          route: Object        };
-        }
+          route: Object
+        };
+      }
     }
-
-    window.customElements.define(PkcArtifacts.is, PkcArtifacts);
+    window.customElements.define(KcArtifacts.is, KcArtifacts);
   </script>
 </dom-module>

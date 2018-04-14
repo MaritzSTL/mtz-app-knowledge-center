@@ -1,10 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/google-analytics-tracker-behavior/google-analytics-tracker-behavior.html">
 
-<dom-module id="pkc-analytics">
+<dom-module id="kc-analytics">
   <script>
-    class PkcAnalytics extends Polymer.mixinBehaviors([Polymer.GoogleAnalyticsTrackerBehavior], Polymer.Element) {
-      static get is() { return 'pkc-analytics'; }
+    class KcAnalytics extends Polymer.mixinBehaviors([Polymer.GoogleAnalyticsTrackerBehavior], Polymer.Element) {
+      static get is() { return 'kc-analytics'; }
 
       ready() {
         super.ready();
@@ -40,6 +40,6 @@
         }
       }
     }
-    window.customElements.define(PkcAnalytics.is, PkcAnalytics);
+    window.customElements.define(KcAnalytics.is, KcAnalytics);
   </script>
 </dom-module>

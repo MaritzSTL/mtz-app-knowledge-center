@@ -1,14 +1,13 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
-<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="shared-styles.html">
-<link rel="import" href="redux-store.html">
-<link rel="import" href="pkc-chapter-preview.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../shared-styles.html">
+<link rel="import" href="kc-page-chapter-preview.html">
 
-<dom-module id="pkc-browse">
+<dom-module id="kc-page-browse">
   <template>
     <style include="shared-styles">
     :host {
@@ -174,46 +173,7 @@
 
       <template is="dom-if" if="{{displayIntro}}">
         <div class="introduction">
-          <h3>Our Promise</h3>
-          <p class = "promise">We'll take you from having zero knowledge of Polymer to fixing your first bug in under four weeks.</p>
-          <p>Polymer allows you to put software in any person's hands, anywhere on earth, faster and more maintainably than its competitors.</p>
-          <paper-button class="indigo" raised on-click="__toggleToast">How?</paper-button>
-          <p>But Polymer has a problem: all of its documentation is reference material, not teaching material. Polymer's documentation is written for people who already understand Polymer, not those who are just getting started.</p>
-          <p>So.</p>
-          <p>What do you need to know?</p>
-          <p>When are you good enough to contribute to a code base?</p>
-          <p>And where do you go when you get stuck?</p>
-          <p><strong>That's what we're here for.</strong></p>
-          <h3>What makes great teaching material?</h3>
-          <p class= "block_quote">The success of any teaching activity is defined by what students actually understood. &ndash; Jeff Scheur</p>
-          <p>You can only teach people new concepts by building off of those which they already understand.</p>
-          <p>Once you know what you need students to understand, you have to <strong>motivate</strong> them to learn.</p>
-          <p>Learning material must build incrementally on itself. You have to build the right map that contains the right parts in the right sequence.</p>
-          <p>Students will be able to <strong>what?</strong></p>
-          <div class="rows">
-            <div class="column">
-              <h3>Effective</h3>
-              <ol>
-                <li>What do my students know?</li>
-                <li>Find Motivation</li>
-                <li>Build incrementally</li>
-              </ol>
-            </div>
-            <div class="column">
-              <h3>Ineffective</h3>
-              <ol>
-                <li>Includes everything right away</li>
-                <li>Dives into irrelevant details</li>
-                <li>Relies on gimmicks instead of motivation</li>
-              </ol>
-            </div>
-          </div>
-          <p>That's what this site is. Polymer's Missing Manual. The guide that should've been in the docs.</p>
-          <p>An organized map, in the right sequence, that will take you from wherever you're at to having a sound mental model, so you don't get stuck.</p>
-          <p>You'll always know where to go next.</p>
-          <paper-button raised on-click="toggleIntro" id="toggleIntroButtonInterior">
-            Got it!
-          </paper-button>
+
         </div>
       </div>
     </template>
@@ -228,12 +188,12 @@
       <div class="shelf" id="[[guide.slug]]">
         <div class="chapter-container">
           <template is="dom-repeat" items="{{__selectChapters(guide.id)}}" as="chapter">
-            <pkc-chapter-preview id="[[chapter.id]]"
+            <kc-chapter-preview id="[[chapter.id]]"
               chapter="[[index]]"
               name="[[chapter.name]]"
               description="[[chapter.description]]"
               status="[[chapter.status]]">
-            </pkc-chapter-preview>
+            </kc-chapter-preview>
           </template>
         </div>
       </div>
@@ -246,8 +206,8 @@
 </template>
 
 <script>
-class PkcBrowse extends ReduxBehavior(Polymer.Element){
-  static get is() { return 'pkc-browse'; }
+class KcPageBrowse extends Polymer.Element {
+  static get is() { return 'kc-page-browse'; }
 
   static get properties() {
     return {
@@ -286,7 +246,6 @@ class PkcBrowse extends ReduxBehavior(Polymer.Element){
     this.$.capabilitytoast.toggle();
   }
 }
-
-window.customElements.define(PkcBrowse.is, PkcBrowse);
+window.customElements.define(KcPageBrowse.is, KcPageBrowse);
 </script>
 </dom-module>

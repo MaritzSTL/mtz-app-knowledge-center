@@ -1,10 +1,10 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/pkc-app.html",
+  "shell": "src/kc-app.html",
   "fragments": [
-    "src/pkc-browse.html",
-    "src/pkc-chapter.html",
-    "src/pkc-view404.html"
+    "src/pages/kc-page-browse.html",
+    "src/pages/kc-page-chapter.html",
+    "src/pages/kc-page-not-found.html"
   ],
   "sources": [
     "src/**/*",

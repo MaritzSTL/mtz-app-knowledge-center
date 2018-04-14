@@ -1,7 +1,7 @@
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
 
-<dom-module id="pkc-chapter-preview">
+<dom-module id="kc-chapter-preview">
   <template>
     <style>
       :host {
@@ -66,8 +66,8 @@
   </template>
 
   <script>
-    class PkcChapterPreview extends Polymer.Element {
-      static get is() { return 'pkc-chapter-preview'; }
+    class KcChapterPreview extends Polymer.Element {
+      static get is() { return 'kc-chapter-preview'; }
 
       static get properties() {
         return {
@@ -96,6 +96,6 @@
         return "card " + this.status;
       }
     }
-    window.customElements.define(PkcChapterPreview.is, PkcChapterPreview);
+    window.customElements.define(KcChapterPreview.is, KcChapterPreview);
   </script>
 </dom-module>
