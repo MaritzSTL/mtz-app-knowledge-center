@@ -1,0 +1,18 @@
+```
+<template id="internet-shark-template">
+  <img src="../images/shark.png"></img>
+</template>
+
+<script>
+  var internetSharkPrototype = Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        var t = document.querySelector('#internet-shark-template');
+        var clone = document.importNode(t.content, true);
+        this.createShadowRoot().appendChild(clone);
+      }
+    }
+  });
+  document.registerElement('internet-shark', {prototype: internetSharkPrototype});
+</script>
+```
