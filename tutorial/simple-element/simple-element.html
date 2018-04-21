@@ -1,0 +1,32 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="simple-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>[[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `simple-element`
+     * A simple element.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+     Polymer({
+       is: 'simple-element',
+       properties: {
+         prop1: {
+           type: String,
+           value: 'Get Ready to RUMBLLLLLLLLLLLLLLLLE!'
+         }
+       }
+     });
+  </script>
+</dom-module>
