@@ -1,0 +1,192 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="redux-store.html">
+
+<link rel="import" href="playground-components/test-component.html">
+
+
+<dom-module id="pkc-playground">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: inline-block;
+                position: relative;
+            }
+        
+            h2 {
+                padding-top: 5%;
+                padding-bottom: 0;
+                font-family: 'Lato', sans-serif;
+                color: rgba(0, 0, 0, 1);
+                text-transform: uppercase;
+                font-weight: lighter;
+                letter-spacing: .1em;
+                text-align: center;
+            }
+        
+            h3 {
+                padding-top: 30px;
+                line-height: 1.5em;
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+                font-weight: bold;
+                text-align: center;
+                padding-bottom: 20px;
+                font-family: 'Work Sans', sans-serif;
+                color: rgba(33, 35, 37, 1);
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-size: 1.7em;
+            }
+        
+            .shelf {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        
+            .section-title {
+                color: rgba(54,49,43,0.3);
+                border-bottom: 2px solid rgba(205,183,155,0.2);
+                margin: 10px 10px 0px 10px;
+            }
+        
+            .chapter-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        
+            .footer {
+                display: flex;
+                justify-content: center;
+            }
+        
+            .introduction {
+                background-color: rgba(255, 255, 255, .97);
+                /* box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7); */
+                display: flex;
+                flex-direction: column;
+                padding-left: 7%;
+                padding-right: 7%;
+                padding-bottom: 40px;
+                width: 90%;
+                min-width: 100px;
+                max-width: 900px;
+                margin-top: 40px;
+                margin-bottom: 40px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        
+            .column h2 {
+                text-align: left;
+            }
+            .promise {
+                text-align: center;
+                width: 70%;
+                font-style: italic;
+                margin: auto;
+                font-size: 18px;
+                padding-top: 25px;
+                line-height: 1.7em;
+                padding-bottom: 25px;
+            }
+        
+            .column {
+                float: left;
+                width: 50%;
+            }
+        
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        
+            #toggleIntroButtonInterior {
+                cursor: pointer;
+                background-color: #c62828;
+                color: white;
+                width: fit-content;
+                margin: 0 auto;
+            }
+            #toggleIntroButtonExterior {
+                cursor: pointer;
+                background-color: #c62828;
+                color: white;
+                width: fit-content;
+                margin: 10px auto 10px auto;
+                display: block;
+            }
+            .legend {
+                display: flex;
+                justify-content: center;
+            }
+            iron-icon {
+                padding-left: 10px;
+                --iron-icon-stroke-color: lightgrey;
+            }
+            .non_technical {
+                fill: var(--paper-light-blue-50);
+            }
+            .under_construction {
+                fill: var(--paper-red-50);
+            }
+            .technical {
+                fill: #FFF;
+            }
+            iron-icon {
+                fill: lightgreen;
+            }
+        </style>
+    
+        <style is="custom-style">
+            .playground {
+                width: 100vw;
+            }
+
+            .components {
+
+            }
+        </style>
+
+        <div class="playground">
+            <div class="introduction">
+                <h2>
+                    This is a playground where anyone can add components they have created.<br>
+                </h2>
+                <h3>
+                    Experiment, learn, have fun.
+                </h3>
+            </div>
+        </div>
+
+        <div class="components">
+            <!-- This is where custom components can be added in to test and play with -->
+            <test-component></test-component>
+        </div>
+    </template>
+
+    <script>
+        class PkcPlayground extends ReduxBehavior(Polymer.Element){
+            static get is() { return 'pkc-playground' }
+
+            static get properties() {
+                return {
+                    someProp: {
+                        type: String,
+                        value: 'test'
+                    }
+                }  
+            }
+        }
+
+        window.customElements.define(PkcPlayground.is, PkcPlayground);
+    </script>
+
+</dom-module>
