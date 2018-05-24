@@ -1,8 +1,10 @@
- Additional tasks which need to be done:
+Additional tasks which need to be done:
+
 * Analytics embedded into app (online, offline)
 * Authentication
 
 Additional chapters which need to be written:
+
 * linting/code format standards
 * appropriate testing
 * device responsiveness
