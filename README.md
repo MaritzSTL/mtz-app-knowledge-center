@@ -152,17 +152,17 @@ As you build out each chapter writing the markdown files of your own, you can bo
       * Provide full name
       * Full name will be attached to your commits
       ```ps
-      git config --global user.name '<user name>'
+      git config --global user.name "<user name>"
       ```
     * Provide Maritz Email Address
       * Email addresses can be uniquely modified locally per repository
       ```ps
-      git config --global user.email '<maritz email>'
+      git config --global user.email "<maritz email>"
       ```
     * Git Ignore File Configuration
       * This may already be set with a fresh installation of Git
       ```ps
-      git config --global core.excludesfile '~/.gitignore'
+      git config --global core.excludesfile "~/.gitignore"
       ```
     * Git Http Post Buffer Configuration
 
