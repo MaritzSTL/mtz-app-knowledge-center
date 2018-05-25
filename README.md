@@ -54,15 +54,25 @@ As you build out each chapter writing the markdown files of your own, you can bo
 2.  Complete [Getting Started](#Getting-Started).
 3.  Update, rewrite, or add any additional chapters.
 
-    * [Chapters](#Chapters)
-
-4.  Commit and push the changes from your local branch.
-5.  Make a pull request.
+    * Reference [Chapters](#Chapters) for additional ideas.
+    * Reference [known issues](https://github.com/MaritzSTL/mtz-app-knowledge-center/issues) via GitHub
     * Complete any of the [additional tasks](#Additional-Tasks)
     * Update this README.md file with any relevant information that meets the following criteria:
       * Any information you found helpful
       * Any information you found unclear
       * Any information obsolete
+
+4.  Commit and push the changes from your local branch.
+5.  Make a pull request.
+    * Via BitBucket
+    * Via GitHub
+      * Navigate to [Pull Requests](https://github.com/MaritzSTL/mtz-app-knowledge-center/pulls)
+        1.  Make sure your changes are pushed.
+        2.  Click **New Pull Request**.
+        3.  Make sure you see the following **base: master <- compare: yourBranchNameHere**.
+        4.  Click **Create Pull Request** button.
+        5.  Begin pull request message body with **_#X some text here_** (where X is the number of the issue).
+        6.  Provide title or description of your pull request.
 
 ##### [back to top](#Polymer-Knowledge-Center)
 
