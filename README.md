@@ -40,7 +40,7 @@ Polymer allows you to put software in any person's hands, anywhere on earth, fas
 
 The purpose of the Polymer Knowledge Center is to teach Polymer by taking a learning by teaching approach.
 
-References the [Learning Resources](#Learing-Resources) section for training and relevant Polymer information.
+References the [Learning Resources](#Learning-Resources) section for training and relevant Polymer information.
 
 As you build out each chapter writing the markdown files of your own, you can both learn and refine the material for this project for the entire team.
 
