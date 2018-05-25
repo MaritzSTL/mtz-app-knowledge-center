@@ -28,7 +28,7 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 * The chapters are zero base indexed.
 
 1.  Chapter 0: [Web Components](chapters/0.md)
-2.  Chapter 1: [A New Kind of <div>](chapters/1.md)
+2.  Chapter 1: [A New Kind of `<div>`](chapters/1.md)
 3.  Chapter 2: [Developing Better](chapters/2.md)
 4.  Chapter 3: [Routing](chapters/3.md)
 
