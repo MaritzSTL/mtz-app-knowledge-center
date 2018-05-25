@@ -24,7 +24,7 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 
 ### Chapters
 
-* This Polymer app simply iterates over all of the markdown files in the chapters folder, then displays then on the home page when the application starts.
+* This Polymer app simply iterates over all of the markdown files in the chapters folder, then displays them on the home page when the application starts.
 * The chapters are zero base indexed.
 
 1.  Chapter 0: [Web Components](chapters/0.md)
