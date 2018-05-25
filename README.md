@@ -24,11 +24,11 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 
 ### Chapters
 
-* This Polymer app simply iterates over all of the markdown files in the chapters folder, then displays then on the home page when the application starts.
+* This Polymer app simply iterates over all of the markdown files in the chapters folder, then displays them on the home page when the application starts.
 * The chapters are zero base indexed.
 
 1.  Chapter 0: [Web Components](chapters/0.md)
-2.  Chapter 1: [A New Kind of <div>](chapters/1.md)
+2.  Chapter 1: [A New Kind of `<div>`](chapters/1.md)
 3.  Chapter 2: [Developing Better](chapters/2.md)
 4.  Chapter 3: [Routing](chapters/3.md)
 
@@ -40,7 +40,7 @@ Polymer allows you to put software in any person's hands, anywhere on earth, fas
 
 The purpose of the Polymer Knowledge Center is to teach Polymer by taking a learning by teaching approach.
 
-References the [Learning Resources](#Learing-Resources) section for training and relevant Polymer information.
+References the [Learning Resources](#Learning-Resources) section for training and relevant Polymer information.
 
 As you build out each chapter writing the markdown files of your own, you can both learn and refine the material for this project for the entire team.
 
@@ -54,15 +54,25 @@ As you build out each chapter writing the markdown files of your own, you can bo
 2.  Complete [Getting Started](#Getting-Started).
 3.  Update, rewrite, or add any additional chapters.
 
-    * [Chapters](#Chapters)
-
-4.  Commit and push the changes from your local branch.
-5.  Make a pull request.
+    * Reference [Chapters](#Chapters) for additional ideas.
+    * Reference [known issues](https://github.com/MaritzSTL/mtz-app-knowledge-center/issues) via GitHub
     * Complete any of the [additional tasks](#Additional-Tasks)
     * Update this README.md file with any relevant information that meets the following criteria:
       * Any information you found helpful
       * Any information you found unclear
       * Any information obsolete
+
+4.  Commit and push the changes from your local branch.
+5.  Make a pull request.
+    * Via BitBucket
+    * Via GitHub
+      * Navigate to [Pull Requests](https://github.com/MaritzSTL/mtz-app-knowledge-center/pulls)
+        1.  Make sure your changes are pushed.
+        2.  Click **New Pull Request**.
+        3.  Make sure you see the following **base: master <- compare: yourBranchNameHere**.
+        4.  Click **Create Pull Request** button.
+        5.  Begin pull request message body with **_#X some text here_** (where X is the number of the issue).
+        6.  Provide title or description of your pull request.
 
 ##### [back to top](#Polymer-Knowledge-Center)
 
@@ -142,17 +152,17 @@ As you build out each chapter writing the markdown files of your own, you can bo
       * Provide full name
       * Full name will be attached to your commits
       ```ps
-      git config --global user.name '<user name>'
+      git config --global user.name "<user name>"
       ```
     * Provide Maritz Email Address
       * Email addresses can be uniquely modified locally per repository
       ```ps
-      git config --global user.email '<maritz email>'
+      git config --global user.email "<maritz email>"
       ```
     * Git Ignore File Configuration
       * This may already be set with a fresh installation of Git
       ```ps
-      git config --global core.excludesfile '~/.gitignore'
+      git config --global core.excludesfile "~/.gitignore"
       ```
     * Git Http Post Buffer Configuration
 
@@ -236,18 +246,18 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Learning Web Components](https://www.lynda.com/Web-Development-tutorials/Learning-Web-Components/540537-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3aWeb+Components%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
 * [Pluralsight](https://www.pluralsight.com)
   * 30 day free trial
-    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/Polymer-js-getting-started)
-    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/Polymer-js-elements-working)
-    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-Polymer-material-design)
+    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/polymer-js-getting-started)
+    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/polymer-js-elements-working)
+    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-polymer-material-design)
 * [Udemy](https://www.udemy.com)
   * Pricing varies per course
-    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-Polymer)
-    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/Polymer-3-code-like-a-google-developer)
+    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-polymer)
+    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/polymer-3-code-like-a-google-developer)
 
 ##### [back to top](#Polymer-Knowledge-Center)
 
 ### Tutorials
 
-* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-Polymer-and-web-components)
+* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components)
 
 ##### [back to top](#Polymer-Knowledge-Center)
