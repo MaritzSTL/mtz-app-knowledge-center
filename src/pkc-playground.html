@@ -8,6 +8,7 @@
 <link rel="import" href="redux-store.html">
 
 <link rel="import" href="playground-components/test-component.html">
+<link rel="import" href="playground-components/tic-tac-toe.html">
 
 
 <dom-module id="pkc-playground">
@@ -151,7 +152,25 @@
             }
 
             .components {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, .97);
+                padding-left: 7%;
+                padding-right: 7%;
+                padding-bottom: 40px;
+                width: 90%;
+                min-width: 100px;
+                max-width: 900px;
+                margin-top: 40px;
+                margin-bottom: 40px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
+            .components > * {
+                flex-grow: 1;
             }
         </style>
 
@@ -169,6 +188,7 @@
         <div class="components">
             <!-- This is where custom components can be added in to test and play with -->
             <test-component></test-component>
+            <tic-tac-toe></tic-tac-toe>
         </div>
     </template>
 

@@ -1,0 +1,179 @@
+<link rel="import" href="../../../polymer/polymer-element.html">
+<link rel="import" href="../../../paper-toast/paper-toast.html">
+
+<dom-module id="tic-tac-toe">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .board {
+        display: flex;
+        flex-flow: row wrap;
+        background-color: #f3f3f3;
+        width: 300px;
+        height: 300px;
+      }
+
+      .space {
+        width: 98px;
+        height: 98px;
+        border: 1px solid black;
+        font-size: 72px;
+      }
+      
+      .newgame {
+        display: inline-block;
+        cursor: pointer;
+        transition: color .3s ease-in-out;
+        border-bottom: 1px dotted #ff487a
+      }
+
+      .newgame:hover {
+        animation: colorchange 1s infinite alternate;
+      }
+
+      @keyframes colorchange {
+        0% { color: blue; }
+        25% { color: orange; }
+        50% { color: green; }
+        75% { color: black; }
+        100% { color: red; }
+      }
+    </style>
+
+    <p>Current Turn: [[turn]]</p>
+    <template is="dom-if" if=[[gameOver]]>
+      <p class="newgame" on-click="__startNewGame">Start New Game</p>
+    </template>
+    <div class="board">
+      <template is="dom-repeat" items="{{spaces}}">
+        <span data-index$="[[index]]" on-click="__handleClick" class="space">[[item]]</span>
+      </template>
+    </div>
+
+    <paper-toast text=""></paper-toast>
+  </template>
+
+  <script>
+    /**
+     * `tic-tac-toe`
+     * plays tic tac toe
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class TicTacToe extends Polymer.Element {
+      static get is() { return 'tic-tac-toe'; }
+      static get properties() {
+        return {
+          spaces: {
+            type: Array,
+            value: () => {
+              return [
+                '-', '-', '-', 
+                '-', '-', '-',
+                '-', '-', '-'
+              ]
+            }
+          },
+          turn: {
+            type: String,
+            value: 'x'
+          },
+          gameOver: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+      static get observers() {
+        return [
+          '__monitorGameEnd(spaces.*)'
+        ]
+      }
+
+      __handleClick(e) {
+        const spaceIndex = Number(e.target.dataset.index);
+
+        if (this.get(`spaces.${spaceIndex}`) !== '-') {
+          const toast = this.shadowRoot.querySelector('paper-toast')
+          toast.text = 'Hey you can\'t do that!';
+          toast.open();
+          return;
+        }
+
+        this.set(`spaces.${spaceIndex}`, this.turn);
+
+        this.__toggleTurn();
+      }
+
+      __toggleTurn() {
+        this.turn = this.turn === 'x' 
+          ? 'o'
+          : 'x';
+      }
+
+      __monitorGameEnd(changes) {
+        const winningCombinations = [
+          [0, 1, 2],
+          [0, 4, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 4, 6],
+          [2, 5, 8],
+          [3, 4, 5],
+          [6, 7, 8]
+        ];
+        
+        let win = false;
+        let winningPlayer = '-';
+
+        winningCombinations.forEach((combination) => {
+          let one, two, three;
+
+          one = changes.base[combination[0]];
+          two = changes.base[combination[1]];
+          three = changes.base[combination[2]];
+
+          if ((one === two) && (two === three) && (one !== "-")) {
+            win = true;
+            winningPlayer = one;
+          }
+        });
+
+        if (win) {
+          this.gameOver = true;
+          const toast = this.shadowRoot.querySelector('paper-toast');
+          toast.text = `${winningPlayer} won! losing player will be shot`;
+          toast.open();
+        }
+
+        // win/loss
+        if (!changes.base.includes('-')) {
+          this.gameOver = true;
+          const toast = this.shadowRoot.querySelector('paper-toast');
+          toast.text = 'Cat\'s game! everybody gets shot';
+          toast.open();
+
+          // increment a win/loss counter
+          // reveal a new game button
+        }
+      }
+
+      __startNewGame(e) {
+        e.preventDefault();
+        this.set('spaces', [ 
+                '-', '-', '-', 
+                '-', '-', '-',
+                '-', '-', '-'
+              ])
+        this.gameOver = false;
+      }
+    }
+
+    window.customElements.define(TicTacToe.is, TicTacToe);
+  </script>
+</dom-module>
