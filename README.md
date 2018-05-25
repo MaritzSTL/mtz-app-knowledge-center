@@ -22,6 +22,16 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 2.  [Video Training Courses](#Video-Training-Courses)
 3.  [Tutorials](#Tutorials)
 
+### Chapters
+
+* This Polymer app simply iterates over all of the markdown files in the chapters folder, then displays then on the home page when the application starts.
+* The chapters are zero base indexed.
+
+1.  Chapter 0: [Web Components](chapters/0.md)
+2.  Chapter 1: [A New Kind of <div>](chapters/1.md)
+3.  Chapter 2: [Developing Better](chapters/2.md)
+4.  Chapter 3: [Routing](chapters/3.md)
+
 ---
 
 ### What Is The Objective?
@@ -40,10 +50,14 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ### How Do I Contribute?
 
-1.  Get Familiar With Polymer [Learning Resources](#Learning-Resources)
-2.  Complete [Getting Started](#Getting-Started)
-3.  Commit and push the changes from your local branch.
-4.  Make a pull request.
+1.  Get familiar with Polymer [Learning Resources](#Learning-Resources).
+2.  Complete [Getting Started](#Getting-Started).
+3.  Update, rewrite, or add any additional chapters.
+
+    * [Chapters](#Chapters)
+
+4.  Commit and push the changes from your local branch.
+5.  Make a pull request.
     * Complete any of the [additional tasks](#Additional-Tasks)
     * Update this README.md file with any relevant information that meets the following criteria:
       * Any information you found helpful
@@ -168,7 +182,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 10. Install Polymer.
 
     ```ps
-    npm install -g polymer-cli
+    npm install -g Polymer-cli
     ```
 
 ---
@@ -186,7 +200,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
     ```
 3.  Open 'mtz-app-knowledge-center' in desired code editor.
     ```ps
-    polymer serve --open
+    Polymer serve --open
     ```
 4.  Make sure you have your branched checked out.
 
@@ -205,10 +219,10 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ### References
 
-* [Polymer Project](https://www.polymer-project.org)
-  * [Polymer 1](https://www.polymer-project.org/1.0/docs/devguide/feature-overview)
-  * [Polymer 2](https://www.polymer-project.org/2.0/docs/devguide/feature-overview)
-  * [Polymer 3](https://www.polymer-project.org/3.0/docs/devguide/feature-overview)
+* [Polymer Project](https://www.Polymer-project.org)
+  * [Polymer 1](https://www.Polymer-project.org/1.0/docs/devguide/feature-overview)
+  * [Polymer 2](https://www.Polymer-project.org/2.0/docs/devguide/feature-overview)
+  * [Polymer 3](https://www.Polymer-project.org/3.0/docs/devguide/feature-overview)
 * [Web Components](https://www.webcomponents.org)
 
 ##### [back to top](#Polymer-Knowledge-Center)
@@ -222,18 +236,18 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Learning Web Components](https://www.lynda.com/Web-Development-tutorials/Learning-Web-Components/540537-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3aWeb+Components%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
 * [Pluralsight](https://www.pluralsight.com)
   * 30 day free trial
-    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/polymer-js-getting-started)
-    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/polymer-js-elements-working)
-    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-polymer-material-design)
+    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/Polymer-js-getting-started)
+    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/Polymer-js-elements-working)
+    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-Polymer-material-design)
 * [Udemy](https://www.udemy.com)
   * Pricing varies per course
-    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-polymer)
-    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/polymer-3-code-like-a-google-developer)
+    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-Polymer)
+    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/Polymer-3-code-like-a-google-developer)
 
 ##### [back to top](#Polymer-Knowledge-Center)
 
 ### Tutorials
 
-* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components)
+* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-Polymer-and-web-components)
 
 ##### [back to top](#Polymer-Knowledge-Center)
