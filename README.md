@@ -246,18 +246,18 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Learning Web Components](https://www.lynda.com/Web-Development-tutorials/Learning-Web-Components/540537-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3aWeb+Components%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
 * [Pluralsight](https://www.pluralsight.com)
   * 30 day free trial
-    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/Polymer-js-getting-started)
-    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/Polymer-js-elements-working)
-    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-Polymer-material-design)
+    * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/polymer-js-getting-started)
+    * [Working with Polymer.js Elements](https://www.pluralsight.com/courses/polymer-js-elements-working)
+    * [Building a Web Application with Polymer.js and Material Design](https://www.pluralsight.com/courses/building-web-application-polymer-material-design)
 * [Udemy](https://www.udemy.com)
   * Pricing varies per course
-    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-Polymer)
-    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/Polymer-3-code-like-a-google-developer)
+    * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-polymer)
+    * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/polymer-3-code-like-a-google-developer)
 
 ##### [back to top](#Polymer-Knowledge-Center)
 
 ### Tutorials
 
-* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-Polymer-and-web-components)
+* [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components)
 
 ##### [back to top](#Polymer-Knowledge-Center)
