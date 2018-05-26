@@ -87,9 +87,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ## Tasks Which Need to Be Completed
 
-* Analytics Embedded Into App
-  * Online
-  * Offline
+* Analytics Embedded Into App (Online, Offline)
 * Authentication
 * Add BitBucket Pull Request Steps
 
@@ -99,12 +97,8 @@ As you build out each chapter writing the markdown files of your own, you can bo
 * Appropriate Testing
 * Device Responsiveness
 * i18n
-* Customizability
-  * Is responsive to app-level defaults
-  * For example: you can set app colors on per-client basis
-* Actual Code
-  * Events Up
-  * Properties Down
+* Customizability (is responsive to app-level defaults, so for ex, you can set app colors on per-client basis)
+* Actual Code (events up, properties down)
 * Reuse Considerations
 * Service Workers
 
@@ -235,7 +229,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ---
 
-1.  Navigate to your mtz-app-knowledge-center working directory.
+1.  Navigate to your **mtz-app-knowledge-center** working directory.
 2.  Install Bower locally.
     ```ps
     bower install
