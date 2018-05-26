@@ -64,7 +64,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 4.  Commit and push the changes from your local branch.
 5.  Make a pull request.
-    * Via BitBucket
+    * Via BitBucket (TODO)
     * Via GitHub
       * Navigate to [Pull Requests](https://github.com/maritzstl/mtz-app-knowledge-center/pulls)
         1.  Make sure your changes are pushed.
