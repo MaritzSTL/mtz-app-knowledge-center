@@ -246,7 +246,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 5.  Push your branch.
     ```ps
-    git pull https://github.com/forkuser/forkedrepo.git yourBranchNameHere
+    git push yourBranchNameHere
     ```
 
 ---
