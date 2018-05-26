@@ -173,7 +173,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
       git config --global http.postBuffer 524288000
       ```
 
-6.  Create desired working directory for repository
+6.  Create desired working directory for repository.
     ```ps
     mkdir c:\YOUR_DESIRED_PATH\mtz-app-knowledge-center
     ```
