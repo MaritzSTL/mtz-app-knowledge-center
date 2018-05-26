@@ -32,6 +32,10 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 3.  Chapter 2: [Developing Better](chapters/2.md)
 4.  Chapter 3: [Routing](chapters/3.md)
 
+### Troubleshooting
+
+* [Setting Up SSH Keys](#setting-up-ssh-keys)
+
 ---
 
 ### What Is The Objective?
@@ -87,6 +91,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
   * Online
   * Offline
 * Authentication
+* Add BitBucket Pull Request Steps
 
 ## Chapters Which Need to Be Written
 
@@ -144,8 +149,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Notepad++](https://notepad-plus-plus.org)
     * [Sublime Text](https://www.sublimetext.com)
     * [Visual Studio Code](https://code.visualstudio.com)
-3.  Install [Node.js](https://nodejs.org/en/download)
-
+3.  Install [Node.js](https://nodejs.org/en/download).
 4.  Install [Git](https://git-scm.com/downloads).
 5.  Modify global Git configuration.
 
@@ -157,6 +161,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
       ```
     * Provide Maritz Email Address
       * Email addresses can be uniquely modified locally per repository
+      * Note: Although your global email address will be globally set for Maritz, your registered GitHub email will be required locally for this Polymer Knowledge Center repository.
       ```ps
       git config --global user.email "yourEmail@maritz.com"
       ```
@@ -177,20 +182,46 @@ As you build out each chapter writing the markdown files of your own, you can bo
     ```ps
     mkdir c:\YOUR_DESIRED_PATH\mtz-app-knowledge-center
     ```
-7.  Clone [Maritz Knowledge Center](https://github.com/MaritzSTL/mtz-app-knowledge-center) repository.
+7.  Clone the [Polymer Knowledge Center](https://github.com/MaritzSTL/mtz-app-knowledge-center) repository.
     * Use an SSH key and passphrase from account.
+    * See [Setting Up SSH Keys](#setting-up-ssh-keys) if you do not already have keys setup.
     ```ps
     git clone git@github.com:MaritzSTL/mtz-app-knowledge-center.git
     ```
-8.  Install [Bower](https://bower.io).
+8.  Set your local config file 'user.email' and 'username'.
+
+* This is where you set your local config email address to whichever one is tied to your GitHub account
+* The user name you set here will be your GitHub profile user name shown in your GitHub profile url
+  ```ps
+  git config user.email "yourRegisteredEmailWithGitHub@example.com"
+  git config username "yourUserName"
+  ```
+
+9.  Verify your local config file user settings.
+
+    * Open and inspect config file **"..\mtz-app-knowledge-center\.git\config"**
+
+    Example
+
+    ```ps
+        [user]
+            name = Terrence Bowen
+            email = terrence.bowen@gmail.com
+            username = terrencebowen
+    ```
+
+10. Install [Bower](https://bower.io).
+
+
     ```ps
     npm install -g bower
     ```
-9.  Create a local branch from master.
+
+11. Create a local branch from master.
 
     * Using your initials lowercase seems to be the convention for mtz-app-knowledge-center repository contributions
 
-10. Install Polymer.
+12. Install Polymer.
 
     ```ps
     npm install -g Polymer-cli
@@ -255,10 +286,34 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-polymer)
     * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/polymer-3-code-like-a-google-developer)
 
-##### [back to top](#polymer-knowledge-center)
-
 ### Tutorials
 
 * [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components)
+
+##### [back to top](#polymer-knowledge-center)
+
+# Troubleshooting
+
+### Setting Up SSH Keys
+
+1.  Open git bash (Use the Windows search. To find it, type "git bash") or the Mac Terminal.
+
+    **Pro Tip: You can use any nix based command prompt (but not the default Windows Command Prompt!)**
+
+2.  Type cd ~/.ssh. This will take you to the root directory for Git (Likely C:\Users\[YOUR-USER-NAME]\.ssh\ on Windows).
+
+3.  Within the .ssh folder, there should be these two files: id_rsa and id_rsa.pub. These are the files that tell your computer how to communicate with GitHub, BitBucket, or any other Git based service. Type ls to see a directory listing. If those two files don't show up, proceed to the next step.
+
+    **NOTE: Your SSH keys must be named id_rsa and id_rsa.pub in order for Git, GitHub, and BitBucket to recognize them by default.**
+
+4.  To create the SSH keys, type ssh-keygen -t rsa -C "yourRegisteredEmailWithGitHub@example.com". This will create both id_rsa and id_rsa.pub files.
+
+5.  Now, go and open id_rsa.pub in your favorite text editor (you can do this via Windows Explorer or the OSX Finder if you like, typing open . will open the folder).
+
+6.  Copy the contents--exactly as it appears, with no extra spaces or lines--of id_rsa.pub and paste it into GitHub and/or BitBucket under the Account Settings > SSH Keys. NOTE: I like to give the SSH key a descriptive name, usually with the name of the workstation I'm on along with the date.
+
+7.  Now that you've added your public key to Github and/or BitBucket, try to git push again and see if it works.
+
+For more help available from GitHub [Connecting to GitHub with SSH](https://help.github.com/articles/connecting-to-github-with-ssh) and BitBucket Help [Troubleshoot SSH issues](https://confluence.atlassian.com/bitbucket/troubleshoot-ssh-issues-271943403.html).
 
 ##### [back to top](#polymer-knowledge-center)
