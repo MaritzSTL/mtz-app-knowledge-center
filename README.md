@@ -6,21 +6,21 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 
 ### About
 
-1.  [What Is The Objective?](#What-Is-The-Objective)
-2.  [How Do I Contribute?](#How-Do-I-Contribute)
-3.  [Additional Tasks](#Additional-Tasks)
+1.  [What Is The Objective?](#what-is-the-objective)
+2.  [How Do I Contribute?](#how-do-i-contribute)
+3.  [Additional Tasks](#additional-tasks)
 
 ### Getting Started
 
-1.  [Developer Access](#Developer-Access)
-2.  [Environment Setup](#Environment-Setup)
-3.  [Deployment](#Deployment)
+1.  [Developer Access](#developer-access)
+2.  [Environment Setup](#environment-setup)
+3.  [Deployment](#deployment)
 
 ### Learning Resources
 
-1.  [References](#References)
-2.  [Video Training Courses](#Video-Training-Courses)
-3.  [Tutorials](#Tutorials)
+1.  [References](#references)
+2.  [Video Training Courses](#video-training-courses)
+3.  [Tutorials](#tutorials)
 
 ### Chapters
 
@@ -40,23 +40,23 @@ Polymer allows you to put software in any person's hands, anywhere on earth, fas
 
 The purpose of the Polymer Knowledge Center is to teach Polymer by taking a learning by teaching approach.
 
-References the [Learning Resources](#Learning-Resources) section for training and relevant Polymer information.
+References the [Learning Resources](#learning-resources) section for training and relevant Polymer information.
 
 As you build out each chapter writing the markdown files of your own, you can both learn and refine the material for this project for the entire team.
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
 ### How Do I Contribute?
 
-1.  Get familiar with Polymer [Learning Resources](#Learning-Resources).
-2.  Complete [Getting Started](#Getting-Started).
+1.  Get familiar with Polymer [Learning Resources](#learning-resources).
+2.  Complete [Getting Started](#getting-started).
 3.  Update, rewrite, or add any additional chapters.
 
-    * Reference [Chapters](#Chapters) for additional ideas.
-    * Reference [known issues](https://github.com/MaritzSTL/mtz-app-knowledge-center/issues) via GitHub
-    * Complete any of the [additional tasks](#Additional-Tasks)
+    * Reference [Chapters](#chapters) for additional ideas.
+    * Reference [known issues](https://github.com/maritzstl/mtz-app-knowledge-center/issues) via GitHub
+    * Complete any of the [additional tasks](#additional-tasks)
     * Update this README.md file with any relevant information that meets the following criteria:
       * Any information you found helpful
       * Any information you found unclear
@@ -66,7 +66,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 5.  Make a pull request.
     * Via BitBucket
     * Via GitHub
-      * Navigate to [Pull Requests](https://github.com/MaritzSTL/mtz-app-knowledge-center/pulls)
+      * Navigate to [Pull Requests](https://github.com/maritzstl/mtz-app-knowledge-center/pulls)
         1.  Make sure your changes are pushed.
         2.  Click **New Pull Request**.
         3.  Make sure you see the following **base: master <- compare: yourBranchNameHere**.
@@ -74,7 +74,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
         5.  Begin pull request message body with **_#X some text here_** (where X is the number of the issue).
         6.  Provide title or description of your pull request.
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
@@ -102,13 +102,13 @@ As you build out each chapter writing the markdown files of your own, you can bo
 * Reuse Considerations
 * Service Workers
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
 ### Developer Access
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
@@ -132,7 +132,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ### Environment Setup
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
@@ -199,7 +199,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ### Deployment
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ---
 
@@ -229,13 +229,13 @@ As you build out each chapter writing the markdown files of your own, you can bo
 
 ### References
 
-* [Polymer Project](https://www.Polymer-project.org)
-  * [Polymer 1](https://www.Polymer-project.org/1.0/docs/devguide/feature-overview)
-  * [Polymer 2](https://www.Polymer-project.org/2.0/docs/devguide/feature-overview)
-  * [Polymer 3](https://www.Polymer-project.org/3.0/docs/devguide/feature-overview)
+* [Polymer Project](https://www.polymer-project.org)
+  * [Polymer 1](https://www.polymer-project.org/1.0/docs/devguide/feature-overview)
+  * [Polymer 2](https://www.polymer-project.org/2.0/docs/devguide/feature-overview)
+  * [Polymer 3](https://www.polymer-project.org/3.0/docs/devguide/feature-overview)
 * [Web Components](https://www.webcomponents.org)
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ### Video Training Courses
 
@@ -243,7 +243,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
   * Free unlimited subscription with a registered [St. Louis County Library](https://www.slcl.org) card
   * 30 day free trial
     * [Learning Polymer](https://www.lynda.com/Polymer-tutorials/Learning-Polymer/540536-2.html?srchtrk=index%3a1%0alinktypeid%3a2%0aq%3aPolymer%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
-    * [Learning Web Components](https://www.lynda.com/Web-Development-tutorials/Learning-Web-Components/540537-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3aWeb+Components%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
+    * [Learning Web Components](https://www.lynda.com/web-development-tutorials/learning-web-components/540537-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3aweb+components%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2)
 * [Pluralsight](https://www.pluralsight.com)
   * 30 day free trial
     * [Getting Started with Polymer.js](https://www.pluralsight.com/courses/polymer-js-getting-started)
@@ -254,10 +254,10 @@ As you build out each chapter writing the markdown files of your own, you can bo
     * [Learn and Build using Polymer 2 - plus Polymer 1](https://www.udemy.com/learn-and-build-using-polymer)
     * [Polymer 3 - Code Like A Google Developer](https://www.udemy.com/polymer-3-code-like-a-google-developer)
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
 
 ### Tutorials
 
 * [Building Your First Polymer App](https://auth0.com/blog/build-your-first-app-with-polymer-and-web-components)
 
-##### [back to top](#Polymer-Knowledge-Center)
+##### [back to top](#polymer-knowledge-center)
