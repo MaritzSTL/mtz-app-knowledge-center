@@ -73,6 +73,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
         4.  Click **Create Pull Request** button.
         5.  Begin pull request message body with **_#X some text here_** (where X is the number of the issue).
         6.  Provide title or description of your pull request.
+        7.  Update the Slack channel [se-pull-requests](https://maritz-motivation.slack.com/messages/C9BQ4GPLK) accordingly.
 
 ##### [back to top](#polymer-knowledge-center)
 
