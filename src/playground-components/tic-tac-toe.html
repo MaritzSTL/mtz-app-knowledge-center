@@ -1,5 +1,7 @@
 <link rel="import" href="../../../polymer/polymer-element.html">
-<link rel="import" href="../../../paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="tic-tac-toe">
   <template>
@@ -42,6 +44,20 @@
         100% { color: red; }
       }
     </style>
+
+    <paper-dialog id="xWinDialog" modal>
+      <p>X player IS VICTORIOUS! Y player will be shot...</p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+      </div>
+    </paper-dialog>
+
+    <paper-dialog id="yWinDialog" modal>
+      <p>Y player IS VICTORIOUS! X player will be shot...</p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+      </div>
+    </paper-dialog>
 
     <p>Current Turn: [[turn]]</p>
     <template is="dom-if" if=[[gameOver]]>
@@ -96,6 +112,7 @@
       }
 
       __handleClick(e) {
+        if (this.gameOver) return;
         const spaceIndex = Number(e.target.dataset.index);
 
         if (this.get(`spaces.${spaceIndex}`) !== '-') {
@@ -146,9 +163,8 @@
 
         if (win) {
           this.gameOver = true;
-          const toast = this.shadowRoot.querySelector('paper-toast');
-          toast.text = `${winningPlayer} won! losing player will be shot`;
-          toast.open();
+          const dialog = this.shadowRoot.querySelector(`#${winningPlayer}WinDialog`);
+          dialog.open();
         }
 
         // win/loss

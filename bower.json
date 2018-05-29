@@ -21,6 +21,7 @@
     "paper-button": "^2.0.0",
     "paper-toast": "^2.0.0",
     "marked-element": "PolymerElements/marked-element#^2.3.2",
+    "paper-dialog": "^2.0.0",
     "app-storage": "^2.0.2"
   },
   "resolutions": {
