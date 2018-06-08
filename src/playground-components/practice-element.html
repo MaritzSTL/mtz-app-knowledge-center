@@ -1,0 +1,80 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../shared-styles.html">
+<link rel="import" href="../redux-store.html">
+
+
+<dom-module id="practice-element">
+    <template>
+
+        <style>
+            #circle {
+                width: 300px;
+                height: 300px;
+                -webkit-border-radius: 200px;
+                -moz-border-radius: 200px;
+                border-radius: 200px;
+                background: black;
+                text-align: center;
+                
+            }
+
+            #circle2 {
+                align-self: center;
+                margin: auto;
+                text-align: center;
+                width: 150px;
+                height: 150px;
+                -webkit-border-radius: 75px;
+                -moz-border-radius: 75px;
+                border-radius: 75px;
+                background: white;
+            }
+
+            paper-button {
+                background-color: blue;
+                color: yellow;
+                width: 40px;
+                height: 80px;
+            }
+
+            .arrow-up {
+                width: 0;
+                height: 0;
+                border-left: 50px solid transparent;
+                border-right: 50px solid transparent;
+                border-bottom: 100px solid red;
+            }
+        </style>
+        <h3>Ask the Magic 8 Ball any question and you will have your answer!</h3>
+        <div style="display:flex;justify-content:center;align-items:center;">
+        <div style="display:flex;justify-content:center;align-items:center;" id="circle">
+            <div style="display:flex;justify-content:center;align-items:center;" id="circle2">
+                <paper-button id="triangleButton" raised class="indigo" on-click="__createMessage">Click Me</paper-button>
+
+            </div>
+        </div>
+    </div>
+
+    </template>
+
+    <script>
+
+        class PracticeElement extends Polymer.Element {
+            static get is() { return 'practice-element'; }
+
+            __createMessage() {
+                var answers = ["Yes", "No", "Try Again Later", "Take a Nap", "Follow Your Heart", "Maybe so", "I have no clue", "*shoulder shrug*", "Chances are 50/50"];
+                var rand = answers[Math.floor(Math.random() * answers.length)];
+                var button = this.$.triangleButton;
+                button.textContent = rand;
+
+            }
+        }
+
+
+        window.customElements.define(PracticeElement.is, PracticeElement);
+    </script>
+
+
+</dom-module>
