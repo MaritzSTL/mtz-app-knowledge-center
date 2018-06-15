@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
 
 <dom-module id="sentence-game">
   <template>
@@ -18,14 +19,19 @@
       }
     </style>
 
-		<h1 class="sentence-title">It's the Chuck Norris sentence game! Guess the sentence!</h1>
-		<dom-repeat id="sentenceInputs" items="[[firstLetterChars]]">
-      <template>
-        <paper-input id="answer" label="[[item]]" value="[[answer]]"></paper-input>
-      </template>
-		</dom-repeat>
+    <h1 class="sentence-title">It's the Chuck Norris sentence game! Guess the sentence!</h1>
+    <iron-form id="sentenceGame" restamp>
+      <form>
+		    <dom-repeat items="{{firstLetterChars}}">
+          <template>
+            <paper-input id="answer" on-change="__checkAnswer" label="[[item]]" name="[[answer]]" data-index$="[[index]]"></paper-input>
+          </template>
+        </dom-repeat>
+      </form>
+    </iron-form>
 		<paper-button raised class="indigo" on-click="__newSentence">New Sentence!</paper-button>
-		<paper-button raised class="indigo" on-click="__submitAnswer">Submit Answer!</paper-button>
+    <paper-button raised class="indigo" on-click="__submitAnswer">Submit Answer!</paper-button>
+    <div>[[guess.answer]]</div>
     <paper-toast text=""></paper-toast>
   </template>
 
@@ -54,13 +60,23 @@
 					},
 					sentence: String,
 					item: String,
+          guess: {
+						type: Array,
+						notify: true
+					},
           answer: {
             type: String,
-            value: ""
-          }
+            notify: true
+          },
         };
       }
-      __newSentence(e) {
+      
+      static get observers() {
+        return [
+          '__submitAnswer(guess.*)'
+        ]
+      }
+      __newSentence(e) {  
 					let wordCount = 1;
           this.item = this.get(['sentences', Math.floor(Math.random() * this.sentences.length)]);
 					let firstLetters = this.item.charAt(0);
@@ -70,20 +86,37 @@
 							firstLetters+= this.item.charAt(i + 1);
 						}
 					}
-          var sentenceWords = this.item.split(" ");
-          console.log("words: " + sentenceWords);
+          let sentenceWords = this.item.split(" ");
+          this.guess = this.$.sentenceGame.serializeForm();
+          let answerArray;
+          if (this.guess.length > 0) {
+            answerArray = Array.from(this.guess);
+          }
+          //for (var i = 0; i < this.sentenceWords.length; i++) {
+            //if (sentenceWords[i] === this.guess[i]) {
+              //alert("Hey, you got a word right! Go, you!");
+            //}
+          //}
+          if (this.guess.length > 0) {
+            console.log("word: " + sentenceWords[0] + " guess: " + answerArray[0]);
+          }
 					this.firstLetterChars = Array.from(firstLetters);
 					console.log(this.item + " " + wordCount + " " + firstLetters);
+          console.log("this.guess.answer: " + this.guess.answer);
+          //this.shadowRoot.querySelector('paper-input').setAttribute('name', '');
           return;
       }
-			__submitAnswer() {
+      __checkAnswer(e) {
+
+      }
+			__submitAnswer(e) {
+        //figure out how to "set" value
         let sentence = this.item;
 				const toast = this.shadowRoot.querySelector('paper-toast');
 				toast.text = `The answer is: ${sentence}`;
-        toast.open();
+        setTimeout(function(){ toast.open(); }, 3000);
 			}
     }
-
     window.customElements.define(SentenceGame.is, SentenceGame);
   </script>
 </dom-module>

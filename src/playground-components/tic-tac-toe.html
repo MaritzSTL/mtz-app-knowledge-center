@@ -114,7 +114,6 @@
       __handleClick(e) {
         if (this.gameOver) return;
         const spaceIndex = Number(e.target.dataset.index);
-
         if (this.get(`spaces.${spaceIndex}`) !== '-') {
           const toast = this.shadowRoot.querySelector('paper-toast')
           toast.text = 'Hey you can\'t do that!';
