@@ -218,7 +218,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 12. Install Polymer.
 
     ```ps
-    npm install -g Polymer-cli
+    npm install -g polymer-cli
     ```
 
 ---
