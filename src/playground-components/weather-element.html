@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../shared-styles.html">
+<link rel="import" href="../redux-store.html">
+
+<dom-module id="weather-element">
+    <template>
+        <style>
+            #temp {
+                text-align: center;
+                font-style: italic;
+            }
+        </style>
+
+        <h3 style="text-align: center">Click the button below to fetch the current temperature in St. Louis, MO!</h3>
+        <div style="display:flex;justify-content:center;align-items:center;">
+            <paper-button id="weatherButton" raised on-click="__fetchWeather">Fetch Weather!</paper-button>
+        </div>
+        <template is="dom-if" if="{{temp}}">
+            <p id="temp">The current temperature in St. Louis is {{temp}} degrees Fahrenheit! It is {{condition}} today with a wind speed of {{wind}} {{unit}}.</p>
+        </template>
+
+        <iron-ajax
+            id="ajax"
+            method="GET"
+            url="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22st.%20louis%2C%20mo%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
+            handle-as="json"
+            on-response="handleResponse"
+            last-response="{{response}}">
+        </iron-ajax>
+    </template>
+
+    <script>
+
+        class Weather extends Polymer.Element {
+            static get is() { return 'weather-element'; }
+
+            __fetchWeather() {
+                this.response = null;
+                this.$.ajax.generateRequest();
+            }
+
+            handleResponse() {
+                this.temp = this.response.query.results.channel.item.condition.temp;
+                this.condition = this.response.query.results.channel.item.condition.text;
+                this.wind = this.response.query.results.channel.wind.speed;
+                this.unit = this.response.query.results.channel.units.speed;
+            }
+        }
+        window.customElements.define(Weather.is, Weather);
+    </script>
+</dom-module>
