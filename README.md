@@ -200,7 +200,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
     ```ps
         [user]
             name = Terrence Bowen
-            email = terrence.bowen@gmail.com
+            email = terrence.bowen@maritz.com
             username = terrencebowen
     ```
 
