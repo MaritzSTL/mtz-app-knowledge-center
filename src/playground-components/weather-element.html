@@ -18,7 +18,7 @@
             <paper-button id="weatherButton" raised on-click="__fetchWeather">Fetch Weather!</paper-button>
         </div>
         <template is="dom-if" if="{{temp}}">
-            <p id="temp">The current temperature in St. Louis is {{temp}} degrees Fahrenheit! It is {{condition}} today with a wind speed of {{wind}} {{unit}}.</p>
+            <p id="temp">The current temperature in {{city}}{{state}} is {{temp}} degrees {{tempUnit}}! It is {{condition}} today with a wind speed of {{wind}} {{speedUnit}}.</p>
         </template>
 
         <iron-ajax
@@ -32,7 +32,6 @@
     </template>
 
     <script>
-
         class Weather extends Polymer.Element {
             static get is() { return 'weather-element'; }
 
@@ -43,9 +42,12 @@
 
             handleResponse() {
                 this.temp = this.response.query.results.channel.item.condition.temp;
+                this.tempUnit = this.response.query.results.channel.units.temperature;
                 this.condition = this.response.query.results.channel.item.condition.text;
                 this.wind = this.response.query.results.channel.wind.speed;
-                this.unit = this.response.query.results.channel.units.speed;
+                this.speedUnit = this.response.query.results.channel.units.speed;
+                this.city = this.response.query.results.channel.location.city;
+                this.state = this.response.query.results.channel.location.region;
             }
         }
         window.customElements.define(Weather.is, Weather);
