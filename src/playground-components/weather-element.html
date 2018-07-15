@@ -30,7 +30,7 @@
     </template>
 
     <script>
-        class Weather extends Polymer.Element {
+        class WeatherElement extends Polymer.Element {
             static get is() { return 'weather-element'; }
 
             __fetchWeather() {
@@ -51,6 +51,6 @@
                 this.state = response.query.results.channel.location.region;
             }
         }
-        window.customElements.define(Weather.is, Weather);
+        window.customElements.define(WeatherElement.is, WeatherElement);
     </script>
 </dom-module>
