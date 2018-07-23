@@ -188,7 +188,7 @@ As you build out each chapter writing the markdown files of your own, you can bo
 * The user name you set here will be your GitHub profile user name shown in your GitHub profile url
   ```ps
   git config user.email "yourRegisteredEmailWithGitHub@example.com"
-  git config username "yourUserName"
+  git config user.name "yourUserName"
   ```
 
 9.  Verify your local config file user settings.
