@@ -20,8 +20,9 @@
       paper-button.pink:hover {
         background-color: var(--paper-pink-400);
       }
-      paper-button.disabled {
-        color: white;
+      #btn-false[disabled], #btn-true[disabled] {
+        background: #eeeeee;
+        color: #777777;
       }
     </style>
     <iron-ajax 
@@ -40,8 +41,8 @@
             <div id="result"></div>
           </div>
           <div class="card-actions">
-            <paper-button class="pink" raised on-click="__checkAnswerTrue">TRUE</paper-button>
-            <paper-button class="pink" raised on-click="__checkAnswerFalse">FALSE</paper-button>
+            <paper-button id="btn-true" class="pink answer-btn" raised on-click="__checkAnswerTrue">TRUE</paper-button>
+            <paper-button id="btn-false" class="pink answer-btn" raised on-click="__checkAnswerFalse">FALSE</paper-button>
             <paper-button on-click="__reset">RESET</paper-button>
           </div>
         </paper-card>
@@ -124,10 +125,13 @@
           let imageUrl = this.gifsNo[random].url, response = 'SORRY.';
           this.__displayAnswer(imageUrl, response);
         }
+        this.__disableButtons();
+        
       }
 
       __checkAnswerFalse() {
         let random = this.__getRandom();
+        
         if (this.questions[0].correct_answer === 'True') {
           let imageUrl = this.gifsNo[random].url, response = 'NOPE.';
           this.__displayAnswer(imageUrl, response);
@@ -135,6 +139,8 @@
           let imageUrl = this.gifsYes[random].url, response = 'YES!';
           this.__displayAnswer(imageUrl, response);
         }
+
+        this.__disableButtons();
       }
 
       __displayAnswer(imageUrl, response) {
@@ -154,8 +160,16 @@
       __reset() {
         this.__getQuestions();
          this.shadowRoot.getElementById('result').innerHTML = '';
+         this.shadowRoot.getElementById('btn-false').disabled = false;
+         this.shadowRoot.getElementById('btn-true').disabled = false;
       }
-      
+
+      __disableButtons() {
+        let btnFalse = this.shadowRoot.getElementById('btn-false');
+        btnFalse.disabled = true;
+        let btnTrue = this.shadowRoot.getElementById('btn-true');
+        btnTrue.disabled = true;
+      }
     }
     window.customElements.define(TrueOrFalse.is, TrueOrFalse);
   </script>
