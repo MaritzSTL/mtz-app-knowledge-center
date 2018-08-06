@@ -87,10 +87,6 @@
                 { url: 'https://media.giphy.com/media/NFgfxZFfMSylO/giphy.gif' }
               ]
             }
-          },
-          question: {
-            type: String,
-            value: {}
           }
         }
       }
@@ -100,22 +96,36 @@
           this.__getQuestions();
         })
       }
-
+      
+      /**
+      * Fetch questions from the remote API
+      */
       __getQuestions() {
         this.$.ajax.generateRequest();
       }
-
-      __HtmlEncode(s) {
+      
+      /**
+      * HTML encode to format the question text from the remote API
+      * @param {string} question - The question text to be encoded
+      */
+      __HtmlEncode(question) {
         var txt = document.createElement("textarea");
-        txt.innerHTML = s;
+        txt.innerHTML = question;
         return txt.value;
       }
 
+      /**
+      * Handle the API response and assign it to the questions array
+      * @param {string} ajaxResponse - The Ajax response
+      */
       __handleResponse(ajaxResponse) {
         const response = ajaxResponse.detail.response;
         this.questions = response.results;
       }
-
+      
+      /**
+      * Evaluate the answer if user selects 'True'
+      */
       __checkAnswerTrue() {
         let random = this.__getRandom();
         if (this.questions[0].correct_answer === 'True') {
@@ -128,6 +138,9 @@
         this.__disableButtons();
       }
 
+      /**
+      * Evaluate the answer if user selects 'False'
+      */
       __checkAnswerFalse() {
         let random = this.__getRandom();
         
@@ -140,7 +153,12 @@
         }
         this.__disableButtons();
       }
-
+      
+      /**
+      * Display the correct answer and feedback image to the user
+      * @param {string} imageUrl - The path for the image to be displayed
+      *@param {string} response - Text feedback for the user
+      */
       __displayAnswer(imageUrl, response) {
         let displayAnswer = this.shadowRoot.getElementById('result');
         let answer = this.questions[0].correct_answer;
@@ -151,17 +169,26 @@
         `;
       }
 
+      /**
+      * Generate a random number
+      */
       __getRandom() {
         return Math.floor(Math.random() * Math.floor(5)); 
       }
-
+      
+      /**
+      * Fetch a new question, reset the UI and enable the buttons
+      */
       __reset() {
         this.__getQuestions();
          this.shadowRoot.getElementById('result').innerHTML = '';
          this.shadowRoot.getElementById('btn-false').disabled = false;
          this.shadowRoot.getElementById('btn-true').disabled = false;
       }
-
+      
+      /**
+      * Disable buttons after the user selects an answer
+      */
       __disableButtons() {
         let btnFalse = this.shadowRoot.getElementById('btn-false');
         btnFalse.disabled = true;
