@@ -1,10 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/iron-form/iron-form.html">
-
 
 <dom-module id="true-or-false">
   <template>
@@ -37,13 +34,11 @@
           <div class="card-content">
             <h2>True or False?</h2>
             <h3 style="color: blueviolet;">[[item.question]]</h3>
-            
-            <div id="result"></div>
-          </div>
-          <div class="card-actions">
             <paper-button id="btn-true" class="pink answer-btn" raised on-click="__checkAnswerTrue">TRUE</paper-button>
             <paper-button id="btn-false" class="pink answer-btn" raised on-click="__checkAnswerFalse">FALSE</paper-button>
             <paper-button on-click="__reset">RESET</paper-button>
+            <br>
+            <div id="result"></div>
           </div>
         </paper-card>
       </template>
@@ -93,7 +88,10 @@
               ]
             }
           },
-
+          question: {
+            type: String,
+            value: {}
+          }
         }
       }
       ready() {
@@ -126,7 +124,6 @@
           this.__displayAnswer(imageUrl, response);
         }
         this.__disableButtons();
-        
       }
 
       __checkAnswerFalse() {
@@ -139,7 +136,6 @@
           let imageUrl = this.gifsYes[random].url, response = 'YES!';
           this.__displayAnswer(imageUrl, response);
         }
-
         this.__disableButtons();
       }
 
