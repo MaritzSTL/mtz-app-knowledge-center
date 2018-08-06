@@ -33,7 +33,7 @@
         <paper-card>
           <div class="card-content">
             <h2>True or False?</h2>
-            <h3 style="color: blueviolet;">[[item.question]]</h3>
+            <h3 style="color: blueviolet;">[[__HtmlEncode(item.question)]]</h3>
             <paper-button id="btn-true" class="pink answer-btn" raised on-click="__checkAnswerTrue">TRUE</paper-button>
             <paper-button id="btn-false" class="pink answer-btn" raised on-click="__checkAnswerFalse">FALSE</paper-button>
             <paper-button on-click="__reset">RESET</paper-button>
@@ -105,8 +105,10 @@
         this.$.ajax.generateRequest();
       }
 
-      __processHTML() {
-        console.log(this.questions[0].question)
+      __HtmlEncode(s) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = s;
+        return txt.value;
       }
 
       __handleResponse(ajaxResponse) {
