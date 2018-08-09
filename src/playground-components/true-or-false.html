@@ -1,0 +1,201 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="true-or-false">
+  <template>
+    <style>
+      paper-button.pink {
+        background-color: var(--paper-pink-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+      paper-button.pink:hover {
+        background-color: var(--paper-pink-400);
+      }
+      #btn-false[disabled], #btn-true[disabled] {
+        background: #eeeeee;
+        color: #777777;
+      }
+    </style>
+    <iron-ajax 
+      id="ajax"
+      url = 'https://opentdb.com/api.php?amount=1&type=boolean';
+      handle-as="json" 
+      on-response="__handleResponse">
+    </iron-ajax>
+    <div style="width:100%; max-width: 700px; margin: 0 auto;">
+      <template is="dom-repeat" items="[[questions]]">
+        <paper-card>
+          <div class="card-content">
+            <h2>True or False?</h2>
+            <h3 style="color: blueviolet;">[[__HtmlEncode(item.question)]]</h3>
+            <paper-button id="btn-true" class="pink answer-btn" raised on-click="__checkAnswerTrue">TRUE</paper-button>
+            <paper-button id="btn-false" class="pink answer-btn" raised on-click="__checkAnswerFalse">FALSE</paper-button>
+            <paper-button on-click="__reset">RESET</paper-button>
+            <br>
+            <div id="result"></div>
+          </div>
+        </paper-card>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    class TrueOrFalse extends Polymer.Element {
+      static get is() { return 'true-or-false' }
+      static get properties() {
+        return {
+          questions: {
+            type: Array,
+            value: []
+          },
+          gifsNo: {
+            type: Array,
+            value: () => {
+              return [
+                { url: 'https://media.giphy.com/media/sgfauo9CqBcAw/giphy.gif' },
+                { url: 'https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif' },
+                { url: 'https://media.giphy.com/media/33bpFN25l6qNW/giphy.gif' },
+                { url: 'https://media.giphy.com/media/oyCkeZXLw0gyQ7y5zu/giphy.gif' },
+                { url: 'https://media.giphy.com/media/FEikw3bXVHdMk/giphy.gif' },
+                { url: 'https://media.giphy.com/media/pLcgO003rbeo0/giphy.gif' },
+                { url: 'https://media.giphy.com/media/EVbEdEW3kuu0o/giphy.gif' },
+                { url: 'https://media.giphy.com/media/ZFVEOfGFewFj2/giphy.gif' },
+                { url: 'https://media.giphy.com/media/11ieom1EOWviAo/giphy.gif' },
+                { url: 'https://media.giphy.com/media/l0HemzWRNpzoM0Vk4/giphy.gif' }
+              ]
+            }
+          },
+          gifsYes: {
+            type: Array,
+            value: () => {
+              return [
+                { url: 'https://media.giphy.com/media/MJs7EYwHyG8XC/giphy.gif' },
+                { url: 'https://media.giphy.com/media/RrVzUOXldFe8M/giphy.gif' },
+                { url: 'https://media.giphy.com/media/nFjDu1LjEADh6/giphy.gif' },
+                { url: 'https://media.giphy.com/media/YTbZzCkRQCEJa/giphy.gif' },
+                { url: 'https://media.giphy.com/media/tZaEooda30vyo/giphy.gif' },
+                { url: 'https://media.giphy.com/media/Av4QHkJeOJJBu/giphy.gif' },
+                { url: 'https://media.giphy.com/media/jErnybNlfE1lm/giphy.gif' },
+                { url: 'https://media.giphy.com/media/Av4QHkJeOJJBu/giphy.gif' },
+                { url: 'https://media.giphy.com/media/l0HFiOtai3t3xIoLK/giphy.gif' },
+                { url: 'https://media.giphy.com/media/NFgfxZFfMSylO/giphy.gif' }
+              ]
+            }
+          }
+        }
+      }
+      ready() {
+        super.ready();
+        Polymer.RenderStatus.afterNextRender(this, function () {
+          this.__getQuestions();
+        })
+      }
+      
+      /**
+      * Fetch questions from the remote API
+      */
+      __getQuestions() {
+        this.$.ajax.generateRequest();
+      }
+      
+      /**
+      * HTML encode to format the question text from the remote API
+      * @param {string} question - The question text to be encoded
+      */
+      __HtmlEncode(question) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = question;
+        return txt.value;
+      }
+
+      /**
+      * Handle the API response and assign it to the questions array
+      * @param {string} ajaxResponse - The Ajax response
+      */
+      __handleResponse(ajaxResponse) {
+        const response = ajaxResponse.detail.response;
+        this.questions = response.results;
+      }
+      
+      /**
+      * Evaluate the answer if user selects 'True'
+      */
+      __checkAnswerTrue() {
+        let random = this.__getRandom();
+        if (this.questions[0].correct_answer === 'True') {
+          let imageUrl = this.gifsYes[random].url, response = 'CORRECT!';
+          this.__displayAnswer(imageUrl, response);
+        } else {
+          let imageUrl = this.gifsNo[random].url, response = 'SORRY.';
+          this.__displayAnswer(imageUrl, response);
+        }
+        this.__disableButtons();
+      }
+
+      /**
+      * Evaluate the answer if user selects 'False'
+      */
+      __checkAnswerFalse() {
+        let random = this.__getRandom();
+        
+        if (this.questions[0].correct_answer === 'True') {
+          let imageUrl = this.gifsNo[random].url, response = 'NOPE.';
+          this.__displayAnswer(imageUrl, response);
+        } else {
+          let imageUrl = this.gifsYes[random].url, response = 'YES!';
+          this.__displayAnswer(imageUrl, response);
+        }
+        this.__disableButtons();
+      }
+      
+      /**
+      * Display the correct answer and feedback image to the user
+      * @param {string} imageUrl - The path for the image to be displayed
+      *@param {string} response - Text feedback for the user
+      */
+      __displayAnswer(imageUrl, response) {
+        let displayAnswer = this.shadowRoot.getElementById('result');
+        let answer = this.questions[0].correct_answer;
+        displayAnswer.innerHTML = `
+          <strong>${response}</strong> The answer is ${answer}.
+          <br>
+          <img src="${imageUrl}">
+        `;
+      }
+
+      /**
+      * Generate a random number
+      */
+      __getRandom() {
+        return Math.floor(Math.random() * Math.floor(5)); 
+      }
+      
+      /**
+      * Fetch a new question, reset the UI and enable the buttons
+      */
+      __reset() {
+        this.__getQuestions();
+         this.shadowRoot.getElementById('result').innerHTML = '';
+         this.shadowRoot.getElementById('btn-false').disabled = false;
+         this.shadowRoot.getElementById('btn-true').disabled = false;
+      }
+      
+      /**
+      * Disable buttons after the user selects an answer
+      */
+      __disableButtons() {
+        let btnFalse = this.shadowRoot.getElementById('btn-false');
+        btnFalse.disabled = true;
+        let btnTrue = this.shadowRoot.getElementById('btn-true');
+        btnTrue.disabled = true;
+      }
+    }
+    window.customElements.define(TrueOrFalse.is, TrueOrFalse);
+  </script>
+</dom-module>
