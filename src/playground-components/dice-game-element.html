@@ -1,0 +1,579 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+
+
+<dom-module id="dice-game-element">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+
+      img {
+        width: 60px;
+        height: 60px;
+        margin-top: -9px;
+      }
+
+      .die {
+        width: 70px;
+        height: 70px;
+        display: inline-block;
+        border: solid 2px white;
+        background-color: white;
+      }
+
+      paper-button[toggles][active]{
+        border-color: #007f90;
+      }
+
+      paper-button.toggle-score-card[toggles][active],
+      paper-button.toggle-rules[toggles][active]{
+        background-color: #00b4cc;
+      }
+
+      .new-game-button, 
+      .toggle-score-card, 
+      .start-button,
+      .score-button,
+      .toggle-rules, 
+      .roll-button{
+        background-color: #007f90;
+        padding: 9px;
+        border-radius: 7px;
+        display: inline-block;
+        color: white;
+      }
+
+      .start-button[disabled], 
+      .roll-button[disabled]{
+        background-color:#005a6683; 
+      }
+
+      paper-radio-group {
+        display: grid;
+      }
+    </style>
+    <h2>Dice Game</h2>
+    <div id='dice' style="display: none;">
+      <h5>Select dice to re-roll</h5>
+      <dom-repeat items='[[dice]]'>
+        <template>      
+          <paper-button data-index$="[[index]]" class='die' id='[[index]]' toggles on-click="_addToRoll">
+            <img id='img' src="../../images/dice_images/[[item]].png">
+          </paper-button>
+        </template>
+      </dom-repeat>
+      <paper-button raised class='roll-button' on-click="_roll">Roll the dice!!</paper-button>
+      <br>
+      <h4>rolls remaining this round: [[remainingRollCount]]</h4>
+      <h4>rounds remaining: [[remainingRoundCount]]</h4>
+    </div>
+    <paper-button raised class='start-button' id='startButton' on-click="_startRound" style="display: none;">Start Round</paper-button>
+    <paper-button raise class='score-button' id='scoreButton' on-click="_saveRoundScore" style="display: none">Score Round</paper-button>
+    <paper-button raised toggles class='toggle-score-card' id='toggleScoreCard' on-click="_toggleScoreCard"style="display: none;">Scoring Options</paper-button>
+    <paper-button raised class='new-game-button' id='newGameButton' on-click="_resetGame">New Game</paper-button>
+    <paper-button raised toggles class='toggle-rules' id='toggleRules' on-click="_toggleRules">Rules</paper-button>
+    <div id='scorecard' style="display: none;">
+      <h3>Score this round</h3>
+      <label>Round Score: [[roundScore]]</label>
+      <br>
+      <label>Total Score: [[totalScore]]</label>
+      <paper-radio-group id='scoreOptionGroup'>
+        <dom-repeat items='[[_scoreOptions]]'>
+          <template>
+             <paper-radio-button name='[[item]]' data-index$='[[index]]' id='[[item]]' on-click="_calculateRoundScore">[[item]]</paper-radio-button>
+          </template>
+        </dom-repeat>
+      </paper-radio-group>
+    </div>
+    <div id='rules' style="display: none;">
+      <h2>Rules</h2>
+      <h3>Game Play</h3>
+      <p>To start a new game select the 'New Game' button. Once you have started
+        the game, you will have 13 rounds with up to three rolls per round. To start a 
+        round select the 'Start Round' button. Selecting this button will roll all 5 dice.
+        You will then have two more chances to roll the dice you choose to re-roll. Dice can be 
+        selected (bordered in green) or deselected (no border). Only the selected dice will be rolled
+        when the 'Roll the Dice!!' button is selected. 
+      </p>
+      <h3>Scoring</h3>
+      <p>Select the 'Scoring Options' button to toggle the scorecard. At the start of the game, there are
+        13 scoring options. Each of these options can only be used to score a round once during a game.
+        Select a scoring option to see what your round score will be. Once you are ready 
+        to save your score, select the 'Score Round' button. Your round score will be added to your total and
+        you will be able to select the 'Start Round' button to move on to the next round. 
+      </p>
+      <h4>Scoring Options</h4>
+      <li>Ones - Sixes: sum of only the dice with the corresponding number</li>
+      <li>Three of a Kind: sum of all the dice if there are at least three dice of the same number</li>
+      <li>Four of a Kind: sum of all the dice if there are at least four dice of the same number</li>
+      <li>Full House: scores 25 if there are three of one number and two of another number</li>
+      <li>Small Straight: scores 30 if there are four dice of sequential numbers</li>
+      <li>Large Straight: scores 40 if all five dice have sequential numbers</li>
+      <li>Yahtzee: scores 50 if all dice have the same number</li>
+      <li>Chance: sum of all the dice</li>
+    </div>
+  </template>
+
+  <script>
+    //constant values
+    //scoring Options Array
+    const scoringOptionsArray = (["ones", "twos", "threes", "fours", "fives", "sixes", "three of a kind", "four of a kind", "full house", "small straight","large straight", "yahtzee", "chance"])
+    const rollsPerRound = 3;
+    const roundCount = 13;
+    const fullHouseScore = 25;
+    const smallStraightScore = 30;
+    const largeStraightScore = 40;
+    const yahtzeeScore = 50;
+    /**
+     * `dice-game-element`
+     * yahtzee dice game
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     *
+     * properties:
+     *  dice: array of the values of the dice (range of 1-6)
+     *  rollDice: Array containing indexes (for 'dice' Array) of the dice
+     *    to be rolled
+     *  _scoreOptions: array of available scoring options
+     *  roundScore: calculated score for the round
+     *  totalScore: game total score
+     *  remainingRollCount: rolls remaining in this round
+     *  remainingRoundCount: rounds remaining in this game
+     */
+    class DiceGameElement extends Polymer.Element {
+      static get is() { return 'dice-game-element'; }
+      static get properties() {
+        return {
+          dice: {
+            type: Array,
+            value: [1, 2, 3, 4, 5]
+          },
+          rollDice: {
+            type: Array,
+            value: []
+          },
+          _scoreOptions: {
+            type: Array,
+            value: []
+          },
+          roundScore: {
+            type: Number,
+            value: 0
+          },
+          totalScore: {
+            type: Number,
+            value: 0
+          },
+          remainingRollCount: {
+            type: Number,
+            value: rollsPerRound,
+            observer: '_rollCountChanged'
+          },
+          remainingRoundCount: {
+            type: Number,
+            value: roundCount,
+            observer: '_roundCountChanged'
+          }
+        };
+      }
+
+      /** @func _addToRoll
+       * Toggles whether a die should be rolled by adding or
+       * removing it from the array of dice to roll and updating the border
+       */
+      _addToRoll(e){
+        var diceIndex = Number(e.currentTarget.dataset.index);
+        if (!this.rollDice.includes(diceIndex)){
+          //add the die to the list of dice to roll
+          this.rollDice.push(diceIndex);
+        }
+        else{
+          //remove die from roll array
+          var removeIndex = this.rollDice.indexOf(diceIndex);
+          this.splice(`rollDice`, removeIndex, 1);
+        }
+      }
+
+      /**@func _roll
+       * Rolls the dice in the rollDice array
+       */
+      _roll () {
+        this.rollDice.forEach(die => {
+          this.set(`dice.${die}`, this._getDiceRoll());
+        });
+        var newRollCount = this.remainingRollCount - 1;
+        this.set(`remainingRollCount`, newRollCount);
+      }
+      
+      /** @func _getDiceRoll
+       * get the new dice roll value
+       * @return a random number in the range from 1 to 6 (inclusive)
+       */
+      _getDiceRoll () {
+        return Math.floor(Math.random() * 6) + 1 ;
+      }
+
+      /** @func _rollCountChanged
+       * Observer for remainingRollCount property
+       * disables roll button when no rolls remain in the current round
+       * @param newCount new value of remainingRollCount
+       * @param oldCount previous value of remainingRollCount
+       */
+       _rollCountChanged (newCount, oldCount) {
+         if (newCount <= 0){
+           this.shadowRoot.getElementById('dice').querySelector('paper-button.roll-button').disabled = true;
+         }
+         else {
+           this.shadowRoot.getElementById('dice').querySelector('paper-button.roll-button').disabled = false;
+         }
+       }
+
+       /** @func _roundCountChanged
+        * Observer for remainingRoundCount property
+        * disables start round button when there are no more rounds
+        * left in the game
+        * @param newCount new value of remainingRoundCount
+        * @param oldCount previous value of remainingRoundCount
+        */
+       _roundCountChanged (newCount, oldCount) {
+         if (newCount <= 0){
+           this.shadowRoot.getElementById('startButton').disabled = true;
+         }
+         else {
+           this.shadowRoot.getElementById('startButton').disabled = false;
+         }
+       }
+
+      /** @func _selectAllDice
+       * adds all dice to the rollDice array 
+       */
+      _selectAllDice () {
+        this._deselectAll();
+        var iterator = 0;
+        this.dice.forEach( _ => {
+          this.push(`rollDice`, iterator);
+          iterator++;
+        });
+      }
+
+      /** @func _deselectAll
+       * reset rollDice array
+       */
+      _deselectAll() {
+        //clear dice to be rolled
+        this.set(`rollDice`, []);
+        // reset button active states to false
+        var diceButtons = this.shadowRoot.getElementById('dice').querySelectorAll('paper-button.die');
+        var buttonIterator = 0;
+        while (buttonIterator < diceButtons.length){
+          diceButtons[buttonIterator].active = false;
+          buttonIterator++;
+        }
+      }
+
+      /** @func _startRound
+       * rolls all the dice to start a round
+       */
+      _startRound () {
+        // reset remainingRollCount
+        this.set(`remainingRollCount`, rollsPerRound);
+        // roll all dice
+        this._selectAllDice();
+        this._roll();
+        //show the dice
+        this.shadowRoot.getElementById('dice').style.display = "";
+        //reset dice selection
+        this._deselectAll(); 
+        // decrement remainingRoundCount
+        this.set(`remainingRoundCount`, this.remainingRoundCount - 1);
+        //show score round button
+        this.shadowRoot.getElementById('scoreButton').style.display = "";
+        // hide start round button
+        this.shadowRoot.getElementById('startButton').style.display = "none";
+      }
+      
+      /** @func _saveRoundScore
+       * end the round and add the round score to the total score
+       */
+      _saveRoundScore () {
+        // add the round score to the total score
+        this.set(`totalScore`, this.totalScore += this.roundScore);
+        // hide score round button
+        this.shadowRoot.getElementById('scoreButton').style.display = "none";
+        // show start round button
+        this.shadowRoot.getElementById('startButton').style.display = "";
+        // reset round score
+        this.set(`roundScore`,0);
+        // remove selected scoring option
+        var scoreOptionIndex = this._scoreOptions.indexOf(this.shadowRoot.getElementById('scoreOptionGroup').selected);
+        this.splice(`_scoreOptions`, scoreOptionIndex, 1);  
+              
+      }
+
+      /** @func _resetGame
+       * reset round and total scores, scoring options and update 
+       * display to reset game
+       */
+       _resetGame () {
+         //reset scoring options
+        this._resetScoreCard();
+        // show start round button
+        this.shadowRoot.getElementById('startButton').style.display = "";
+        //hide score round button
+        this.shadowRoot.getElementById('scoreButton').style.display = "none";
+        //show scoring options button
+        this.shadowRoot.getElementById('toggleScoreCard').style.display = "";
+        // reset dice selection
+        this._deselectAll();
+        // hide dice
+        this.shadowRoot.getElementById('dice').style.display = "none";
+        // reset remainingRoundCounter
+        this.set(`remainingRoundCount`, roundCount);
+       }
+
+       /** @func _resetScoreCard
+        * reset total score and scoring options
+        */
+       _resetScoreCard () {
+         this.set(`_scoreOptions`,[]);
+         // populate the scoringOptions array with all 13 options
+         for (var option in scoringOptionsArray){
+           this.push(`_scoreOptions`, scoringOptionsArray[option]);
+         }
+         //reset total score
+         this.set(`totalScore`, 0);
+       }
+
+       /** @func _toggleScoreCard
+        * toggles the scoreCard div
+        */
+       _toggleScoreCard (e) {
+         if (e.currentTarget.active){
+          this.shadowRoot.getElementById('scorecard').style.display = "";
+         }
+         else {
+          this.shadowRoot.getElementById('scorecard').style.display = "none";
+         }
+       }
+
+       /** @func _calculateRoundScore
+        * calculates the round score based on the scoring option selected
+        */
+       _calculateRoundScore (e) {
+         var scoreOptionIndex = scoringOptionsArray.indexOf(e.currentTarget.name);
+         var calculatedRoundScore = 0;
+         switch (scoreOptionIndex) {
+          case 6:
+            calculatedRoundScore = this._scoreThreeOfAKind();
+            break;
+          case 7:
+            calculatedRoundScore = this._scoreFourOfAKind();
+            break;
+          case 8:
+            calculatedRoundScore = this._scoreFullHouse();
+            break;
+          case 9:
+            calculatedRoundScore = this._scoreSmallStraight();
+            break;
+          case 10:
+            calculatedRoundScore = this._scoreLargeStraight();
+            break;
+          case 11:
+            calculatedRoundScore = this._scoreYahtzee();
+            break;
+          case 12:
+            calculatedRoundScore = this._sumAllDice();
+            break;
+          default:
+            calculatedRoundScore = this._scoreNumberCalculation(scoreOptionIndex + 1);
+            break;
+         }
+
+        this.set(`roundScore`, calculatedRoundScore);
+       }
+
+       /** @func _scoreNumberCalculation
+        * scores single number scoring option
+        * returns the sum of the dice with the specified number
+        * @return calculated score
+        */
+      _scoreNumberCalculation(number) {
+        var sum = 0;
+        this.dice.forEach(die => {
+          if (die === number){
+            sum += die;
+          }
+        });
+        return sum;
+      }
+
+      /** @func _sumAllDice
+       * returns the sum of all the dice
+       * @return calculated score
+       */
+      _sumAllDice () {
+        var sum = 0;
+        this.dice.forEach(die => sum += die);
+        return sum;
+      }
+
+      /** @func _scoreFourOfAKind
+       * scores the round for the four of a kind scoring option
+       * returns the sum of all the dice if there are four of a kind
+       * @return calculated score
+       */ 
+      _scoreFourOfAKind () {
+        var sum = 0;
+        var copiedDice = this.dice.map(die => die).sort();
+        if (this._hasThreeOFAKind(copiedDice)){
+          if (this._hasThreeOFAKind(copiedDice)){
+            sum = this._sumAllDice();
+          }
+        }
+        return sum;
+      }
+
+      /** @func _scoreYahtzee
+       * score the round for the yahtzee (five of a kind) scoring
+       * option
+       * @returns 50 if there are five of a kind, else 0
+       */
+      _scoreYahtzee () {
+        var sum = 0;
+        if (this.dice.every(die => die === this.dice[0])){
+          sum = yahtzeeScore;
+        }
+        return sum;
+      }
+
+      /** @func _scoreThreeOfAKind
+       * scores the round for the three of a kind scoring option
+       * @return the sum of all the dice if there are three of a kind
+       */
+      _scoreThreeOfAKind(){
+        var sum = 0;
+        var copiedDice = this.dice.map(die => die).sort();
+        if (this._hasThreeOFAKind(copiedDice)){
+          sum = this._sumAllDice();
+        }
+        return sum;
+      }
+
+      /** @func _hasThreeOfAKind
+       * checks if there are three dice of the same number
+       * @return true if there are at least three dice of the same number
+       */
+      _hasThreeOFAKind (diceArray) {
+        var threeKind = false;
+        var checkDie = diceArray.pop();
+        var filteredLength = diceArray.filter(die => die === checkDie).length;
+        if (filteredLength > 1){
+          threeKind = true;
+        }
+        else if (diceArray.length > 2){
+          threeKind = this._hasThreeOFAKind(diceArray);
+        }
+        return threeKind;
+      }
+      
+      /**@func _scoreFullHouse
+       * @return 25 if dice has three of a kind and two of a kind
+       * returns 0 otherwise
+       */
+      _scoreFullHouse () {
+        var sum = 0;
+        var copiedDice = this.dice.map(die => die).sort();
+        if (copiedDice[0] === copiedDice[1] && 
+            copiedDice[copiedDice.length - 1] === copiedDice[copiedDice.length - 2] && 
+            this._hasThreeOFAKind(copiedDice)){
+              sum = fullHouseScore;
+        }
+        return sum;
+      }
+
+      /** @func _scoreSmallStraight
+       * calculates the round score based on the small straight scoring option
+       * @returns 30 if there are at least 4 sequential dice
+       */
+      _scoreSmallStraight () {
+        var sum = 0;
+        var uniqueDice = this._getUniqueDiceArray();
+        if (uniqueDice.length > this.dice.length - 2){
+          //second die in the uniqueDice sorted array
+          var die1 = uniqueDice[1];
+          switch (die1) {
+            case 2:
+              if (uniqueDice[3] === 4){
+                sum = smallStraightScore;
+              }
+              break;
+            case 3:
+              if (uniqueDice[3] === 5){
+                sum = smallStraightScore;
+              }
+              break;
+            case 4:
+              if (uniqueDice[3] === 6) {
+                sum = smallStraightScore;
+              }
+              break;
+            default:
+              sum = 0;
+              break;
+          }
+        }
+        return sum;
+      }
+
+      /** @func _scoreLargeStraight
+       * calculates the round score based on the large straight scoring option
+       * @return 40 if there are at least 5 sequential dice
+       */
+      _scoreLargeStraight () {
+        var sum = 0;
+        var uniqueDice = this._getUniqueDiceArray();
+        if (uniqueDice.length === this.dice.length){
+          sum = largeStraightScore;
+        }
+        return sum;
+      }
+      
+
+      /** @func getUniqueDiceArray
+       * @returns an array of the unique dice in the dice array
+       */
+      _getUniqueDiceArray () {
+        var copiedDice = new Array;
+        var dieIndex = 0;
+        while (dieIndex < this.dice.length) {
+          if (!copiedDice.includes(this.dice[dieIndex])){
+            copiedDice.push(this.dice[dieIndex]);
+          }
+          dieIndex++;
+        }
+        copiedDice.sort();
+        return copiedDice;
+      }
+
+      /** @func _toggleRules
+       * toggles the rules section
+       */
+      _toggleRules(e) {
+        if (e.currentTarget.active){
+          this.shadowRoot.getElementById('rules').style.display = "";
+        }
+        else {
+          this.shadowRoot.getElementById('rules').style.display = "none";
+        }
+      }
+    }
+
+    window.customElements.define(DiceGameElement.is, DiceGameElement);
+  </script>
+</dom-module>
