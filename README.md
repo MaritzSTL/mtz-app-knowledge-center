@@ -21,6 +21,7 @@ _Our Promise: We'll take you from having zero knowledge of Polymer to fixing you
 1.  [References](#references)
 2.  [Video Training Courses](#video-training-courses)
 3.  [Tutorials](#tutorials)
+4.  [Sauce Labs Orientation Overview](https://github.com/MaritzSTL/sauce-labs-orientation "Sauce Labs orientation overview with Polymer and Selenium code examples") - Sauce Labs orientation overview with Polymer and Selenium code examples
 
 ### Chapters
 
